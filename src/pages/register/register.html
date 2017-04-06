@@ -1,0 +1,62 @@
+<!--
+  Generated template for the Register page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title align="center">Registration Page</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Full Name</ion-label>
+        <ion-input type="text" name="fullname"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" name="username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" name="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" name="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Address</ion-label>
+        <ion-input type="text" name="address"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Phone no</ion-label>
+        <ion-input type="text" name="phone"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div padding>
+      <button ion-button block (click)="onSubmitSignUp()">Sign Up</button>
+    </div>
+    <h4 align="center">- or -</h4>
+    <div padding>
+      <p align="center"><a (click)="onLoadLogin()" >Login</a></p>
+    </div>
+
+
+  </div>
+</ion-content>
