@@ -15,33 +15,30 @@
 
 <ion-content padding>
   <div>
-    <ion-list>
+    <form (ngSubmit)="onSubmitLogin(f.value)" #f="ngForm">
+        <ion-list>
 
-      <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text" name="username" [(ngModel)]=user.username required ></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" name="password" [(ngModel)]="user.password" required></ion-input>
+          </ion-item>
 
-    </ion-list>
+        </ion-list>
 
-    <div padding>
-      <button ion-button block (click)="onSubmitLogin()">Sign In</button>
-      <br>
-      <p align="center"><a href="#" >Forgot password</a></p>
-    </div>
+        <div padding>
+          <button ion-button block type="submit" [disabled] = "!f.valid" >Sign In</button>
+          <br>
+          <p align="center"><a href="#" >Forgot password</a></p>
+        </div>
+    </form>
     <h4 align="center">- or -</h4>
     <div padding>
       <button ion-button block (click)="onLoadSignUp()">Sign Up</button>
-    </div>
-
-    //admin button will be remove
-    <div padding>
-      <button ion-button block (click)="onLoadAdminDashboard()">Admin</button>
     </div>
 
 

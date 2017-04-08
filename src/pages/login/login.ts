@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import {Register} from "../register/register";
 import {AdminDashboard} from "../admin-dashboard/admin-dashboard";
+import {NgForm} from "@angular/forms";
 
 /**
  * Generated class for the Login page.
@@ -16,6 +17,10 @@ import {AdminDashboard} from "../admin-dashboard/admin-dashboard";
   templateUrl: 'login.html',
 })
 export class Login {
+  user = {
+    username : '',
+    password : ''
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -24,16 +29,18 @@ export class Login {
     console.log('ionViewDidLoad Login');
   }
 
-  onSubmitLogin(){
+  onSubmitLogin(form:NgForm){
+
+    if(this.user.username == "admin" && this.user.password == "admin"){
+      this.navCtrl.push(AdminDashboard);
+    }else{
       this.navCtrl.push(HomePage);
+    }
+    
   }
 
   onLoadSignUp(){
     this.navCtrl.push(Register);
-  }
-
-  onLoadAdminDashboard(){
-    this.navCtrl.push(AdminDashboard);
   }
 
 }
