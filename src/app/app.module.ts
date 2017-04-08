@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import {Login} from "../pages/login/login";
 import {Register} from "../pages/register/register";
 import {AdminDashboard} from "../pages/admin-dashboard/admin-dashboard";
+import {HireStep1} from "../pages/hire-step1/hire-step1";
+import {HireStep2} from "../pages/hire-step2/hire-step2";
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {AdminDashboard} from "../pages/admin-dashboard/admin-dashboard";
     HomePage,
     Login,
     Register,
-    AdminDashboard
+    AdminDashboard,
+    HireStep1,
+    HireStep2
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import {AdminDashboard} from "../pages/admin-dashboard/admin-dashboard";
     HomePage,
     Login,
     Register,
-    AdminDashboard
+    AdminDashboard,
+    HireStep1,
+    HireStep2
   ],
   providers: [
     StatusBar,
