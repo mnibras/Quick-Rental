@@ -13,6 +13,7 @@ import {AdminAddDriver} from "../pages/admin-add-driver/admin-add-driver";
 import {AdminAddCar} from "../pages/admin-add-car/admin-add-car";
 import {HireStep1} from "../pages/hire-step1/hire-step1";
 import {HireStep2} from "../pages/hire-step2/hire-step2";
+import {HireStep3} from "../pages/hire-step3/hire-step3";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {HireStep2} from "../pages/hire-step2/hire-step2";
     AdminDashboard,
     HireStep1,
     HireStep2,
+    HireStep3,
     AdminAddDriver,
     AdminAddCar
   ],
@@ -39,6 +41,7 @@ import {HireStep2} from "../pages/hire-step2/hire-step2";
     AdminDashboard,
     HireStep1,
     HireStep2,
+    HireStep3,
     AdminAddDriver,
     AdminAddCar
   ],

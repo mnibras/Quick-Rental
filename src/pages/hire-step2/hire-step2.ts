@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {HireStep3} from '../hire-step3/hire-step3'
 
 
 /**
@@ -20,6 +21,10 @@ export class HireStep2 {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HireStep2');
+  }
+
+  submitHireDate(){
+    this.navCtrl.push(HireStep3);
   }
 
 }
