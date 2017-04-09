@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import {Login} from "../pages/login/login";
 import {Register} from "../pages/register/register";
 import {AdminDashboard} from "../pages/admin-dashboard/admin-dashboard";
+import {AdminAddDriver} from "../pages/admin-add-driver/admin-add-driver";
+import {AdminAddCar} from "../pages/admin-add-car/admin-add-car";
 import {HireStep1} from "../pages/hire-step1/hire-step1";
 import {HireStep2} from "../pages/hire-step2/hire-step2";
 
@@ -20,7 +22,9 @@ import {HireStep2} from "../pages/hire-step2/hire-step2";
     Register,
     AdminDashboard,
     HireStep1,
-    HireStep2
+    HireStep2,
+    AdminAddDriver,
+    AdminAddCar
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,9 @@ import {HireStep2} from "../pages/hire-step2/hire-step2";
     Register,
     AdminDashboard,
     HireStep1,
-    HireStep2
+    HireStep2,
+    AdminAddDriver,
+    AdminAddCar
   ],
   providers: [
     StatusBar,

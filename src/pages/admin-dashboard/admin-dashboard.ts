@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AdminAddCar} from '../admin-add-car/admin-add-car';
+import {AdminAddDriver} from '../admin-add-driver/admin-add-driver';
+
 
 /**
  * Generated class for the AdminDashboard page.
@@ -19,6 +22,14 @@ export class AdminDashboard {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdminDashboard');
+  }
+
+  addCar(){
+    this.navCtrl.push(AdminAddCar);
+  }
+
+  addDriver(){
+    this.navCtrl.push(AdminAddDriver);
   }
 
 }
