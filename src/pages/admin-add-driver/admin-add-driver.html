@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Add Driver</ion-title>
   </ion-navbar>
 
@@ -15,32 +15,32 @@
 
 <ion-content padding>
   <div>
-      <form #form="ngForm" (ngSubmit)="addDriver(form.value)">
+      <form #form="ngForm" (ngSubmit)="submitToAddDrivers(form.value)">
         <ion-list>
           <ion-item>
-            <ion-input placeholder="Name"></ion-input>    
+            <ion-input placeholder="Name"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="NIC"></ion-input>     
+            <ion-input placeholder="NIC"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="Address"></ion-input>     
+            <ion-input placeholder="Address"></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="Phone"></ion-input>     
+            <ion-input placeholder="Phone"></ion-input>
           </ion-item>
 
           <ion-item>
             <button ion-button icon-left>
               <ion-icon name="person-add"></ion-icon>
               Upload Picture
-            </button>     
+            </button>
           </ion-item>
 
-          
+
           <ion-item>
             <button ion-button block type="submit" [disabled] = "!form.valid" >Add Driver</button>
           </ion-item>

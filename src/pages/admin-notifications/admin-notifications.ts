@@ -1,29 +1,24 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {NgForm} from "@angular/forms";
 
 /**
- * Generated class for the AdminAddCar page.
+ * Generated class for the AdminNotifications page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-admin-add-car',
-  templateUrl: 'admin-add-car.html',
+  selector: 'page-admin-notifications',
+  templateUrl: 'admin-notifications.html',
 })
-export class AdminAddCar {
+export class AdminNotifications {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminAddCar');
-  }
-
-  submitToAddCar(form:NgForm){
-
+    console.log('ionViewDidLoad AdminNotifications');
   }
 
 }

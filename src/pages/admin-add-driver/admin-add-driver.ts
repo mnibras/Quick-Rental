@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {NgForm} from "@angular/forms";
 
 /**
  * Generated class for the AdminAddDriver page.
@@ -19,6 +20,10 @@ export class AdminAddDriver {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdminAddDriver');
+  }
+
+  submitToAddDrivers(form:NgForm){
+
   }
 
 }

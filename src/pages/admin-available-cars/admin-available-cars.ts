@@ -1,29 +1,24 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {NgForm} from "@angular/forms";
 
 /**
- * Generated class for the AdminAddCar page.
+ * Generated class for the AdminAvailableCars page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-admin-add-car',
-  templateUrl: 'admin-add-car.html',
+  selector: 'page-admin-available-cars',
+  templateUrl: 'admin-available-cars.html',
 })
-export class AdminAddCar {
+export class AdminAvailableCars {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminAddCar');
-  }
-
-  submitToAddCar(form:NgForm){
-
+    console.log('ionViewDidLoad AdminAvailableCars');
   }
 
 }
