@@ -21,6 +21,8 @@ import {AdminAvailableCars} from "../pages/admin-available-cars/admin-available-
 import {AdminAvailableDrivers} from "../pages/admin-available-drivers/admin-available-drivers";
 import {AdminHireHistory} from "../pages/admin-hire-history/admin-hire-history";
 import {AdminHireNotification} from "../pages/admin-hire-notification/admin-hire-notification";
+import {AdminRentNotification} from "../pages/admin-rent-notification/admin-rent-notification";
+import {AdminRentHistory} from "../pages/admin-rent-history/admin-rent-history";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {AdminHireNotification} from "../pages/admin-hire-notification/admin-hire
     AdminAvailableCars,
     AdminAvailableDrivers,
     AdminHireHistory,
-    AdminHireNotification
+    AdminHireNotification,
+    AdminRentNotification,
+    AdminRentHistory
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,9 @@ import {AdminHireNotification} from "../pages/admin-hire-notification/admin-hire
     AdminAvailableCars,
     AdminAvailableDrivers,
     AdminHireHistory,
-    AdminHireNotification
+    AdminHireNotification,
+    AdminRentNotification,
+    AdminRentHistory
   ],
   providers: [
     StatusBar,

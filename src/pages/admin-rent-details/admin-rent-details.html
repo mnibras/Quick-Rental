@@ -14,5 +14,28 @@
 
 
 <ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Manage Rent Details
+    </ion-card-header>
 
+    <ion-list>
+
+      <button ion-item (click)="showAvailableVehiclePage()">
+        <ion-icon name="car" item-left></ion-icon>
+        <p item-left>Available Vehicle</p>
+      </button>
+
+      <button ion-item (click)="showRentHistoryPage()">
+        <ion-icon name="search" item-left></ion-icon>
+        <p item-left>Rent History</p>
+      </button>
+
+      <button ion-item (click)="showRentNotificationPage()">
+        <ion-icon name="notifications" item-left></ion-icon>
+        <p item-left>Rent Notification</p>
+      </button>
+
+    </ion-list>
+  </ion-card>
 </ion-content>
