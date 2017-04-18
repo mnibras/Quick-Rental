@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { CustomerHireNotification } from '../customer-hire-notification/customer-hire-notification';
 import { AlertController } from 'ionic-angular';
 
 /**
@@ -26,6 +27,7 @@ export class HireStep3 {
   confirmHireCar(){
     //confirmed hire care
     this.showAlert();
+    this.navCtrl.push(CustomerHireNotification);
   }
 
   showAlert() {
