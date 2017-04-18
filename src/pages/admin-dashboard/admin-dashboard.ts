@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AdminAddCar} from '../admin-add-car/admin-add-car';
 import {AdminAddDriver} from '../admin-add-driver/admin-add-driver';
+import {AdminRentDetails} from "../admin-rent-details/admin-rent-details";
+import {AdminNotifications} from "../admin-notifications/admin-notifications";
+import {AdminHireDetails} from "../admin-hire-details/admin-hire-details";
 
 
 /**
@@ -24,12 +27,25 @@ export class AdminDashboard {
     console.log('ionViewDidLoad AdminDashboard');
   }
 
-  addCar(){
+
+  showCarDetailsPage(){
     this.navCtrl.push(AdminAddCar);
   }
 
-  addDriver(){
+  showDriverDetailsPage(){
     this.navCtrl.push(AdminAddDriver);
+  }
+
+  showRentDetailsPage(){
+    this.navCtrl.push(AdminRentDetails);
+  }
+
+  showHireDetailsPage(){
+    this.navCtrl.push(AdminHireDetails);
+  }
+
+  showNotificationPage(){
+    this.navCtrl.push(AdminNotifications);
   }
 
 }

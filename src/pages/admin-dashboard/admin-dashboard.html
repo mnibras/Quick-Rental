@@ -14,34 +14,39 @@
 
 
 <ion-content padding>
-  <div class="row">
-    <div class="col-sm-6">
-      <button ion-button icon-left (click)="addCar()">
-        <ion-icon name="car"></ion-icon>
-          Add Car
+
+  <ion-card>
+    <ion-card-header>
+      Manage Admin Panel
+    </ion-card-header>
+
+    <ion-list>
+      <button ion-item (click)="showCarDetailsPage()">
+        <ion-icon name="add-circle" item-left></ion-icon>
+        <p item-left>Car Details</p>
       </button>
-    </div>
-    <div class="col-sm-6">
-      <button ion-button icon-right>
-        <ion-icon name="search"></ion-icon>
-         Search
+
+      <button ion-item (click)="showDriverDetailsPage()">
+        <ion-icon name="person-add" item-left></ion-icon>
+        <p item-left>Driver Details</p>
       </button>
-    </div>
-  </div>
-  
-    <div class="row">
-    <div class="col-sm-6">
-      <button ion-button icon-left (click)="addDriver()">
-        <ion-icon name="person-add"></ion-icon>
-          Add Driver
+
+      <button ion-item (click)="showRentDetailsPage()">
+        <ion-icon name="car" item-left></ion-icon>
+        <p item-left>Rent Details</p>
       </button>
-    </div>
-    <div class="col-sm-6">
-      <button ion-button icon-right>
-        <ion-icon name="notifications"></ion-icon>
-         Notifications
+
+      <button ion-item (click)="showHireDetailsPage()">
+        <ion-icon name="people" item-left></ion-icon>
+        <p item-left>Hire Details</p>
       </button>
-    </div>
-  </div>
+
+      <button ion-item (click)="showNotificationPage()">
+        <ion-icon name="notifications" item-left></ion-icon>
+        <p item-left>Notification</p>
+      </button>
+
+    </ion-list>
+  </ion-card>
 
 </ion-content>
