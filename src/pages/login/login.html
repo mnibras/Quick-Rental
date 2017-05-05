@@ -15,12 +15,12 @@
 
 <ion-content padding>
   <div>
-    <form (ngSubmit)="onSubmitLogin(f.value)" #f="ngForm">
+    <form (ngSubmit)="onSubmitLogin(formData.value)" #formData="ngForm">
         <ion-list>
 
           <ion-item>
-            <ion-label floating>Username</ion-label>
-            <ion-input type="text" name="username" [(ngModel)]=user.username required ></ion-input>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="text" name="email" [(ngModel)]=user.email required ></ion-input>
           </ion-item>
 
           <ion-item>
@@ -31,7 +31,7 @@
         </ion-list>
 
         <div padding>
-          <button ion-button block type="submit" [disabled] = "!f.valid" >Sign In</button>
+          <button ion-button block type="submit" [disabled] = "!formData.valid" >Sign In</button>
           <br>
           <p align="center"><a href="#" >Forgot password</a></p>
         </div>

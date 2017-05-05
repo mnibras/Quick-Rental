@@ -25,7 +25,7 @@ export class HireStep3 {
   }
 
   confirmHireCar(){
-    //confirmed hire care
+    //confirmed hire car
     this.showAlert();
     this.navCtrl.push(CustomerHireNotification);
   }

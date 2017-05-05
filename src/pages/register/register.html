@@ -19,32 +19,40 @@
 
       <ion-item>
         <ion-label floating>Full Name</ion-label>
-        <ion-input type="text" name="fullname"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text" name="username"></ion-input>
+        <ion-input type="text" name="fullname" [(ngModel)]=user.fullname required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input type="text" name="email"></ion-input>
+        <ion-input type="text" name="email" [(ngModel)]=user.email required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Password</ion-label>
-        <ion-input type="password" name="password"></ion-input>
+        <ion-input type="password" name="password" [(ngModel)]=user.password required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Confirm Password</ion-label>
+        <ion-input type="password" name="confirmPassword" [(ngModel)]=user.confirmPassword required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>User Type</ion-label>
+        <ion-select id="userType" [(ngModel)]="user.type">
+          <ion-option value="c">I'm Customer</ion-option>
+          <ion-option value="o">I'm Owner</ion-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Address</ion-label>
-        <ion-input type="text" name="address"></ion-input>
+        <ion-input type="text" name="address" [(ngModel)]=user.address required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Phone no</ion-label>
-        <ion-input type="text" name="phone"></ion-input>
+        <ion-input type="text" name="phone" [(ngModel)]=user.phone required></ion-input>
       </ion-item>
 
     </ion-list>

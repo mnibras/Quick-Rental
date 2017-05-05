@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicModule } from 'ionic-angular';
+//import { IonicModule } from 'ionic-angular';
 import { AdminRentHistory } from './admin-rent-history';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { AdminRentHistory } from './admin-rent-history';
     AdminRentHistory,
   ],
   imports: [
-    IonicModule.forChild(AdminRentHistory),
+    //IonicModule.forChild(AdminRentHistory),
   ],
   exports: [
     AdminRentHistory
