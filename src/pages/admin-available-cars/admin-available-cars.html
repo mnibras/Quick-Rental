@@ -15,25 +15,33 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
+    <ion-item ngFor="let vehicle of vehiclesList">
       <ion-avatar item-left>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+        <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
       </ion-avatar>
-      <p>Car Name 1</p>
+      <p>Type : {{vehicle.type}}</p>
+      <p>Vehicle No : {{vehicle.vehicleNo}}</p>
     </ion-item>
 
-    <ion-item>
+    <!--<ion-item>
       <ion-avatar item-left>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+        <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
       </ion-avatar>
       <p>Car Name 2</p>
     </ion-item>
 
     <ion-item>
       <ion-avatar item-left>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
+        <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
       </ion-avatar>
       <p>Car Name 3</p>
     </ion-item>
+
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
+      </ion-avatar>
+      <p>Car Name 3</p>
+    </ion-item>-->
   </ion-list>
 </ion-content>

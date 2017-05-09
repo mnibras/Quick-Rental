@@ -18,19 +18,19 @@
       <form #form="ngForm" (ngSubmit)="submitToAddDrivers(form.value)">
         <ion-list>
           <ion-item>
-            <ion-input placeholder="Name"></ion-input>
+            <ion-input placeholder="enter driver name" type="text" name="name" [(ngModel)]= "user.name" required></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="NIC"></ion-input>
+            <ion-input  placeholder="enter driver nic" type="text" name="nic" [(ngModel)]= "user.nic" required ></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="Address"></ion-input>
+            <ion-input  placeholder="enter driver address" type="text" name="address" [(ngModel)]= "user.address" required ></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="Phone"></ion-input>
+            <ion-input  placeholder="enter driver phone" type="text" name="phone" [(ngModel)]= "user.phone" required ></ion-input>
           </ion-item>
 
           <ion-item>
