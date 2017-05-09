@@ -15,14 +15,14 @@
 
 <ion-content padding>
     <div>
-      <form #form="ngForm" (ngSubmit)="submitHireLocation(form.value)">
+      <form #formData="ngForm" (ngSubmit)="submitHireLocation(formData.value)">
         <ion-list>
           <ion-item>
-            <ion-input placeholder="Your Location"></ion-input>    
+            <ion-input placeholder="Your Location" name="location" [(ngModel)]=location required></ion-input>    
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="Destination"></ion-input>     
+            <ion-input placeholder="Destination" name="destination" [(ngModel)]=destination required></ion-input>     
           </ion-item>
 
           <ion-item>
@@ -30,7 +30,7 @@
           </ion-item>
           
           <ion-item>
-            <button ion-button block type="submit" [disabled] = "!form.valid" >Continue</button>
+            <button ion-button block type="submit" [disabled] = "!formData.valid" >Continue</button>
           </ion-item>
 
         </ion-list>

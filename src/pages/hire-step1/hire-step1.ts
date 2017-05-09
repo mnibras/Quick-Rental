@@ -40,7 +40,11 @@ export class HireStep1 {
     this.map = new google.map.Map(this.mapElemnt.nativeElement, mapOptions);
   }
 
-  submitHireLocation(form:NgForm){
+  submitHireLocation(formData){
+      this.navCtrl.push(HireStep2, {
+        location: formData.location,
+        destination: formData.destination
+      });
       this.navCtrl.push(HireStep2);
   }
 

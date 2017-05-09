@@ -41,34 +41,7 @@ export class Register {
 
   //submit pages
   onSubmitSignUp(){
-    console.log('user name : '+this.user.fullname);
-    this.loginService.signUpUser(this.user)
-      .then(authData => {
-        //var userTpe = document.getElementById("userType");
-        //if(userTpe == "")
-          let alert = this.alertCtrl.create({
-            title: 'New Account Created',
-            subTitle: 'Thank You For Joining With Us!!! ',
-            buttons: ['OK']
-          });
-          alert.present();
-          this.navCtrl.setRoot(HomePage);
-
-      }, error => { 
-          let alert = this.alertCtrl.create({
-            title: 'Error in SignUp',
-            subTitle: error.message,
-            buttons: ['OK']
-          });
-          alert.present();
-      });
-
-      let loader = this.loadingCtrl.create({
-        dismissOnPageChange: true,
-        content: "Creating Account..."
-      });
-
-      loader.present();
+    
 
     }
 

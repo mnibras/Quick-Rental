@@ -40,35 +40,7 @@ export class Login {
 
   onSubmitLogin(formData){
 
-   // if(this.user.username == "admin" && this.user.password == "admin"){
-     // this.navCtrl.push(AdminDashboard);
-    //}else{
-      //this.navCtrl.push(HomePage);
-    //}
-
-    //console.log('form Data ', formData.email);
-    
-    this.loginService.loginUser(formData.email, formData.password)
-      .then(authData => {
-        //var userTpe = document.getElementById("userType");
-        //if(userTpe == "")
-        
-        this.navCtrl.setRoot(HomePage);
-      }, error => {
-         let alert = this.alertCtrl.create({
-            title: 'Error On Login',
-            subTitle: error.message,
-            buttons: ['OK']
-          });
-          alert.present();
-      });
-
-      let loader = this.loadingCtrl.create({
-        dismissOnPageChange: true,
-        content: "Login..."
-      });
-
-      loader.present();
+   
     
   }
 
