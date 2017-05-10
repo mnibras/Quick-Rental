@@ -20,7 +20,7 @@ export class HomePage {
   }
 
   logoutUser(){
-      this.loginService.logoutUser().then(() =>{
+      /*this.loginService.logoutUser().then(() =>{
           this.navCtrl.setRoot(Login);
       });
 
@@ -29,7 +29,7 @@ export class HomePage {
         content: "Logout..."
       });
 
-      loader.present();
+      loader.present();*/
 
   }
 
