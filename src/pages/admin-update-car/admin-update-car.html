@@ -1,0 +1,123 @@
+<!--
+  Generated template for the AdminUpdateCar page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>admin-update-car</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="submitToUpdateCar(form.value)">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating color="appbase">Model No</ion-label>
+        <ion-input
+          name="modelNo"
+          type="text"
+          [(ngModel)]= "vehicle.modelName"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Year</ion-label>
+        <ion-input
+          name="year"
+          type="text"
+          [(ngModel)]= "vehicle.year"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Vehicle No</ion-label>
+        <ion-input
+          name="vehicleNo"
+          type="text"
+          [(ngModel)]="vehicle.vehicleNo"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Type</ion-label>
+        <ion-input
+          name="type"
+          type="text"
+          [(ngModel)]="vehicle.type"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Colour</ion-label>
+        <ion-input
+          name="colour"
+          type="text"
+          [(ngModel)]="vehicle.colour"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Current Millage</ion-label>
+        <ion-input
+          name="currentMillage"
+          type="text"
+          [(ngModel)]="vehicle.currentMillage"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">No Of Seats</ion-label>
+        <ion-input
+          name="noOfSeats"
+          type="text"
+          [(ngModel)]="vehicle.noOfSeats"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Availability</ion-label>
+        <ion-input
+          name="available"
+          type="text"
+          [(ngModel)]="vehicle.available"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Rent amount per day</ion-label>
+        <ion-input
+          name="rentPerDay"
+          type="text"
+          [(ngModel)]="vehicle.rentPerDay"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Hire amount per millage</ion-label>
+        <ion-input
+          name="hirePerMilage"
+          type="text"
+          [(ngModel)]="vehicle.hirePerMilage"
+          required>
+        </ion-input>
+      </ion-item>
+      <br>
+      <button ion-button block type="submit" [disabled] = "!form.valid" color="appbase">Submit</button>
+    </ion-list>
+  </form>
+</ion-content>

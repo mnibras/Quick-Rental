@@ -62,21 +62,36 @@ export class AdminCarService {
                       .map((res:Response) => res.json());
   }
 
-  editVehicle(vehicle: Vehicle): Observable<Vehicle[]>{
-    //let bodyString = JSON.stringify(vehicle);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+  editVehicle(vehicle: Vehicle): Observable<Vehicle>{
+    console.log("editVehicle : "+ JSON.stringify(vehicle));
+    const body = JSON.stringify(vehicle);
+    let headers = new Headers({ 'Content-Type': 'application/json' ,
+      "Authorization": "Basic " + btoa('username:password'),
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'PUT',
+      'Access-Control-Allow-Origin': '*'});
+
+    let options = new RequestOptions({ headers: headers });
 
 
     let url = `${this.baseURL}/vehicle/edit`;
 
-    return this.http.put(`${url}/${vehicle.id}`, vehicle, {headers:headers})
+    return this.http.put(url, body, options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  removeVehicle(vehicle: Vehicle): Observable<Vehicle[]>{
-    let url = `${this.baseURL}/vehicle/delete`;
-     return this.http.delete(`${url}/${vehicle.id}`)
+  removeVehicle(id: number){
+    let headers = new Headers({ 'Content-Type': 'application/json' ,
+      "Authorization": "Basic " + btoa('username:password'),
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'PUT',
+      'Access-Control-Allow-Origin': '*'});
+
+    let options = new RequestOptions({ headers: headers });
+
+    let url = `${this.baseURL}/vehicle/delete/${id}`;
+     return this.http.delete(url,options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

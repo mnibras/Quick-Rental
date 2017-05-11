@@ -18,21 +18,13 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let vehicleItem of vehiclesList">
-        <ion-avatar item-left>
-          <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
-        </ion-avatar>
-        <p>Type : {{vehicleItem.type}}</p>
-        <p>Vehicle No : {{vehicleItem.vehicleNo}}</p>
-    </ion-item>
-
     <ion-item-sliding *ngFor="let vehicle of vehiclesList">
       <ion-item (click)="viewVehicle(vehicle)">
         <ion-avatar item-left>
           <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
         </ion-avatar>
         <h2>{{vehicle.vehicleNo}}</h2>
-        <p>{{vehicle.type}}</p>
+        <p>{{vehicle.modelName}}</p>
       </ion-item>
       <ion-item-options side="left" >
         <button ion-button color="primary" (click)="viewVehicle(vehicle)">

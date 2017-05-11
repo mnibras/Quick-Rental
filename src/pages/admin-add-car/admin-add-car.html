@@ -89,7 +89,7 @@
         <ion-input
           name="modelNo"
           type="text"
-          [(ngModel)]= "vehicle.modelNo"
+          [(ngModel)]= "vehicle.modelName"
           required>
         </ion-input>
       </ion-item>
@@ -105,13 +105,23 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating color="appbase">Vehicle No</ion-label>
-          <ion-input
-            name="vehicleNo"
-            type="text"
-            [(ngModel)]="vehicle.vehicleNo"
-            required>
-          </ion-input>
+      <ion-label floating color="appbase">Vehicle No</ion-label>
+      <ion-input
+        name="vehicleNo"
+        type="text"
+        [(ngModel)]="vehicle.vehicleNo"
+        required>
+      </ion-input>
+    </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Type</ion-label>
+        <ion-input
+          name="type"
+          type="text"
+          [(ngModel)]="vehicle.type"
+          required>
+        </ion-input>
       </ion-item>
 
       <ion-item>
@@ -153,6 +163,26 @@
           required>
         </ion-input>
      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Rent amount per day</ion-label>
+        <ion-input
+          name="rentPerDay"
+          type="text"
+          [(ngModel)]="vehicle.rentPerDay"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Hire amount per millage</ion-label>
+        <ion-input
+          name="hirePerMilage"
+          type="text"
+          [(ngModel)]="vehicle.hirePerMilage"
+          required>
+        </ion-input>
+      </ion-item>
       <br>
       <button ion-button block type="submit" [disabled] = "!form.valid" color="appbase">Submit</button>
     </ion-list>

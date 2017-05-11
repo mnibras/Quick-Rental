@@ -5,6 +5,7 @@ import { Vehicle } from "../../app/model/vehicle";
 import {AdminCarService} from "../../providers/admin-car-service";
 import {AdminVehicle} from "../admin-vehicle/admin-vehicle";
 import {AdminAddCar} from "../admin-add-car/admin-add-car";
+import {AdminUpdateCar} from "../admin-update-car/admin-update-car";
 
 /**
  * Generated class for the AdminAvailableCars page.
@@ -52,11 +53,17 @@ export class AdminAvailableCars {
   }
 
   updateVehicle(vehicle:Vehicle){
-
+    this.navCtrl.push(AdminUpdateCar,{vehicle:vehicle});
   }
 
   deleteVehicle(id:number){
-
+    this.adminCarService.removeVehicle(id).subscribe(
+                          data => {
+                            console.log(JSON.stringify(data));
+                          },
+                          err => {
+                            console.log("Error : "+err);
+                          });
   }
 
 }
