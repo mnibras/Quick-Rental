@@ -1,14 +1,30 @@
-export interface Vehicle {
+export class Vehicle {
 
-  id: number;
-  type: string; //car,van
-  noOfSeats:number;
-  vehicleNo: string;
-  modelNo: string; //BMW
-  colour:string;
-  year: number;
-  currentMillage: number;
-  isAvailable:boolean;
+  public id: number;
+  public type: string; //car,van
+  public noOfSeats:number;
+  public vehicleNo: string;
+  public modelName: string; //BMW
+  public colour:string;
+  public year: number;
+  public rentPerDay: number;
+  public hirePerMilage: number;
+  public currentMillage: number;
+  public available: boolean;
+
+  Vehicle(){
+    this.id = 0;
+    this.type = "";
+    this.noOfSeats = 0;
+    this.vehicleNo = "";
+    this.modelName = "";
+    this.rentPerDay = 0;
+    this.hirePerMilage = 0;
+    this.colour = "";
+    this.year = 0;
+    this.currentMillage = 0;
+    this.available = false;
+  }
 
 
   /*private _name: string;

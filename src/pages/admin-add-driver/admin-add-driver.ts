@@ -38,10 +38,10 @@ export class AdminAddDriver {
     console.log('ionViewDidLoad AdminAddDriver');
   }
 
-  
+
 
   submitToAddDrivers(form:NgForm){
-    this.userDto.name = this.user.name;
+    this.userDto.fullname = this.user.name;
     this.userDto.address = this.user.address;
     this.userDto.nic = this.user.nic;
     this.userDto.phone = this.user.phone;
@@ -51,7 +51,7 @@ export class AdminAddDriver {
     this.adminDriverService.addDriver(this.userDto).subscribe(
                                 userRes => {
                                     this.userListDto = userRes
-                                }, 
+                                },
                                 err => {
                                     console.log(err);
                                 });

@@ -1,4 +1,4 @@
-export interface User {
+export class User {
   id:number;
   fullname: string;
   email: string;
@@ -8,6 +8,18 @@ export interface User {
   nic: string;
   userRole: number;
   licenseNo: string;
+
+  User(){
+    this.id = 0;
+    this.fullname = "";
+    this.email = "";
+    this.password = "";
+    this.address = "";
+    this.phone = 0;
+    this.nic = "";
+    this.userRole = 0;
+    this.licenseNo = "";
+  }
 
 
 /*

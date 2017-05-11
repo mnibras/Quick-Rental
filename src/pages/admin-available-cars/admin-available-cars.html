@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Available Cars</ion-title>
+    <ion-title>Available Vehicle</ion-title>
+    <ion-buttons end (click)="loadAddVehiclePage()">
+      <button><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -15,33 +18,38 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item ngFor="let vehicle of vehiclesList">
-      <ion-avatar item-left>
-        <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
-      </ion-avatar>
-      <p>Type : {{vehicle.type}}</p>
-      <p>Vehicle No : {{vehicle.vehicleNo}}</p>
+    <ion-item *ngFor="let vehicleItem of vehiclesList">
+        <ion-avatar item-left>
+          <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
+        </ion-avatar>
+        <p>Type : {{vehicleItem.type}}</p>
+        <p>Vehicle No : {{vehicleItem.vehicleNo}}</p>
     </ion-item>
 
-    <!--<ion-item>
-      <ion-avatar item-left>
-        <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
-      </ion-avatar>
-      <p>Car Name 2</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
-      </ion-avatar>
-      <p>Car Name 3</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
-      </ion-avatar>
-      <p>Car Name 3</p>
-    </ion-item>-->
+    <ion-item-sliding *ngFor="let vehicle of vehiclesList">
+      <ion-item (click)="viewVehicle(vehicle)">
+        <ion-avatar item-left>
+          <img src="http://www.pngall.com/wp-content/uploads/2016/07/Car-Free-Download-PNG.png" width="10px" height="10px">
+        </ion-avatar>
+        <h2>{{vehicle.vehicleNo}}</h2>
+        <p>{{vehicle.type}}</p>
+      </ion-item>
+      <ion-item-options side="left" >
+        <button ion-button color="primary" (click)="viewVehicle(vehicle)">
+          <ion-icon name="eye"></ion-icon>
+          View
+        </button>
+        <button ion-button color="secondary" (click)="updateVehicle(vehicle)">
+          <ion-icon name="open"></ion-icon>
+          Edit
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteVehicle(vehicle.id)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

@@ -28,6 +28,12 @@ import {AdminHireHistory} from "../pages/admin-hire-history/admin-hire-history";
 import {AdminHireNotification} from "../pages/admin-hire-notification/admin-hire-notification";
 import {AdminRentNotification} from "../pages/admin-rent-notification/admin-rent-notification";
 import {AdminRentHistory} from "../pages/admin-rent-history/admin-rent-history";
+import {AdminCarService} from "../providers/admin-car-service";
+import {AdminDriverService} from "../providers/admin-driver-service";
+import {AdminHireService} from "../providers/admin-hire-service";
+import {LoginService} from "../providers/login-service";
+import {UserService} from "../providers/user-service";
+import {AdminVehicle} from "../pages/admin-vehicle/admin-vehicle";
 
 
 @NgModule({
@@ -51,7 +57,8 @@ import {AdminRentHistory} from "../pages/admin-rent-history/admin-rent-history";
     AdminHireHistory,
     AdminHireNotification,
     AdminRentNotification,
-    AdminRentHistory
+    AdminRentHistory,
+    AdminVehicle
   ],
   imports: [
     HttpModule,
@@ -79,12 +86,18 @@ import {AdminRentHistory} from "../pages/admin-rent-history/admin-rent-history";
     AdminHireHistory,
     AdminHireNotification,
     AdminRentNotification,
-    AdminRentHistory
+    AdminRentHistory,
+    AdminVehicle
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AdminCarService,
+    AdminDriverService,
+    AdminHireService,
+    LoginService,
+    UserService
   ]
 })
 export class AppModule {}

@@ -2,5 +2,9 @@
   "name": "Quick-Rental",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "proxies": [{
+    "path": "/api/rest",
+    "proxyUrl": "http://localhost:8080/rest"
+  }]
 }

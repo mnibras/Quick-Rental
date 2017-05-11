@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AdminAddCar} from '../admin-add-car/admin-add-car';
+//import {AdminAddCar} from '../admin-add-car/admin-add-car';
 import {AdminAddDriver} from '../admin-add-driver/admin-add-driver';
 import {AdminRentDetails} from "../admin-rent-details/admin-rent-details";
 import {AdminNotifications} from "../admin-notifications/admin-notifications";
 import {AdminHireDetails} from "../admin-hire-details/admin-hire-details";
+import {AdminAvailableCars} from "../admin-available-cars/admin-available-cars";
 
 
 /**
@@ -29,7 +30,7 @@ export class AdminDashboard {
 
 
   showCarDetailsPage(){
-    this.navCtrl.push(AdminAddCar);
+    this.navCtrl.push(AdminAvailableCars);
   }
 
   showDriverDetailsPage(){

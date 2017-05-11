@@ -18,44 +18,25 @@ import {AdminCarService} from "../../providers/admin-car-service";
   templateUrl: 'admin-add-car.html',
 })
 export class AdminAddCar {
-  private vehicleDto:Vehicle;
-  private vehicleDtoList:Vehicle[];
+  public vehicle:Vehicle;
 
-   vehicle = {
-    id : 0,
-    type : '',
-    vehicleNo:'',
-    modelNo:'',
-    colour:'',
-    year:0,
-    currentMillage:0
-  };
-
-
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public adminCarService: AdminCarService) {
+      this.vehicle = new Vehicle();
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdminAddCar');
   }
 
   submitToAddCar(form:NgForm){
-    this.vehicleDto.type = this.vehicle.type;
-    this.vehicleDto.vehicleNo = this.vehicle.vehicleNo;
-    this.vehicleDto.modelNo = this.vehicle.modelNo;
-    this.vehicleDto.colour = this.vehicle.colour;
-    this.vehicleDto.year = this.vehicle.year;
-    this.vehicleDto.currentMillage = this.vehicle.currentMillage;
-
-    this.adminCarService.addVehicle(this.vehicleDto).subscribe(
-                                vehicleRes => {
-                                    this.vehicleDtoList = vehicleRes
-                                }, 
-                                err => {
-                                    console.log(err);
-                                });
+    console.log("submitToAddCar : "+ JSON.stringify(this.vehicle));
+    this.adminCarService.addVehicle(this.vehicle)
+                        .subscribe(
+                          (data:any) => console.log(data)
+                        );
   }
 
 }

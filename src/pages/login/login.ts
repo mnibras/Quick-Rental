@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
-import { HomePage } from '../home/home';
+//import { HomePage } from '../home/home';
 import {Register} from "../register/register";
-//import {AdminDashboard} from "../admin-dashboard/admin-dashboard";
-import {NgForm} from "@angular/forms";
+import {AdminDashboard} from "../admin-dashboard/admin-dashboard";
+//import {NgForm} from "@angular/forms";
 import {LoginService} from "../../providers/login-service";
 
 /**
@@ -34,14 +34,12 @@ export class Login {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
-    
-    
+
+
   }
 
   onSubmitLogin(formData){
-
-   
-    
+    this.navCtrl.push(AdminDashboard);
   }
 
   onLoadSignUp(){
