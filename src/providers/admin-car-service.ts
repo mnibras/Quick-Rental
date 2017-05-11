@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -35,6 +35,7 @@ export class AdminCarService {
 
   getVehiclesList(): Observable<Vehicle[]>{
     let url = `${this.baseURL}/vehicle`;
+
     return this.http.get(url)
                     .map((res:Response) => <Vehicle[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
@@ -46,15 +47,18 @@ export class AdminCarService {
   addVehicle(vehicle: Vehicle): Observable<Vehicle>{
     console.log("addVehicle : "+ JSON.stringify(vehicle));
     const body = JSON.stringify(vehicle);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    headers.append('Access-Control-Allow-Methods', 'POST');
-    headers.append('Access-Control-Allow-Origin', '*');
+    let headers = new Headers({ 'Content-Type': 'application/json' ,
+      "Authorization": "Basic " + btoa('username:password'),
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'POST',
+      'Access-Control-Allow-Origin': '*'});
+
+    let options = new RequestOptions({ headers: headers });
 
 
     let url = `${this.baseURL}/vehicle/add`;
 
-    return this.http.post(url, body,{headers:headers})
+    return this.http.post(url, body,options)
                       .map((res:Response) => res.json());
   }
 

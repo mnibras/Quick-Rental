@@ -37,33 +37,41 @@ export class AdminRentService {
 
   addRentDetails(rent:Rent):Observable<Rent[]>{
     let bodyString = JSON.stringify(rent);
-    let headers = new Headers({ 'Content-Type': 'application/json' }); 
+    //let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Accept': 'application/json' ,
+        "Authorization": "Basic " + btoa('username:password'),
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Origin': '*'});
     let options = new RequestOptions({ headers: headers });
 
     let url = `${this.baseURL}rent/add/`;
 
-    return this.http.post(url, rent, options)
-                      .map((res:Response) => res.json()) 
+    return this.http.post(url, bodyString, options)
+                      .map((res:Response) => res.json())
                       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   editRentDetails(rent:Rent):Observable<Rent[]>{
     let bodyString = JSON.stringify(rent);
-    let headers = new Headers({ 'Content-Type': 'application/json' }); 
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', 'Basic ' + btoa('username:password'));
+
+
     let options = new RequestOptions({ headers: headers });
 
     let url = `${this.baseURL}rent/edit`;
 
-    return this.http.put(`${url}/${rent.id}`, rent, options) 
-                         .map((res:Response) => res.json()) 
+    return this.http.put(`${url}/${rent.id}`, bodyString, options)
+                         .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   removeDetails(rent:Rent):Observable<Rent[]>{
     let url = `${this.baseURL}rent/delete`;
-    return this.http.delete(`${url}/${rent.id}`) 
-                        .map((res:Response) => res.json()) 
-                        .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
+    return this.http.delete(`${url}/${rent.id}`)
+                        .map((res:Response) => res.json())
+                        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }
