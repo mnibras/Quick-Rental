@@ -10,11 +10,15 @@
 </ion-header>
 
 <ion-content padding>
-  <div padding style="margin-top: 150px;">
+  <div>
     <button ion-button block (click)="loadHirePage()">For Hire</button>
   </div>
   <h4 align="center">- or -</h4>
   <div padding>
-    <button ion-button block >For Rent</button>
+    <button ion-button block (click)="loadRentPage()">For Rent</button>
+  </div>
+  <h4 align="center">- or -</h4>
+  <div padding>
+    <button ion-button block (click)="loadNotificationsPage()">Notifications</button>
   </div>
 </ion-content>

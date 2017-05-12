@@ -15,16 +15,51 @@ import {HireStep3} from '../hire-step3/hire-step3'
   templateUrl: 'hire-step2.html',
 })
 export class HireStep2 {
+  public location: String;
+  public destination: String;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  hire = {
+    id: 0,
+    amount:0,
+    bookingSeats:0,
+    description: '',
+    destination: '',
+    endMilage: 0,
+    hireDate: '',
+    hireTime: '',
+    isFinished:0,
+    location: '',
+    startMilage: 0,
+    status:1,
+
+    customer: null,
+    driver: null,
+    vehicle: null
+  
+  }
+
+  constructor(public navCtrl: NavController, public params: NavParams) {
+    this.hire.location = params.get('location');
+    this.hire.destination = params.get('destination');
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HireStep2');
+    
   }
 
-  submitHireDate(){
-    this.navCtrl.push(HireStep3);
+  submitHireDetails(formData){
+    
+    this.hire.hireDate = formData.hireDate;
+    this.hire.hireTime = formData.hireTime;
+   
+    var bookingSeatsArray = formData.bookingSeats;
+    this.hire.bookingSeats = bookingSeatsArray[0];
+    
+    this.navCtrl.push(HireStep3,{
+      hire: this.hire
+    });
   }
 
 }

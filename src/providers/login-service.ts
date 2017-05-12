@@ -19,6 +19,10 @@ export class LoginService {
 
   }
 
+  signInUser(email: String, password: String){
+    
+  }
+
   signUpUser(user){
 
   }

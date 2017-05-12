@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
-
 import {Hire} from "../app/model/hire";
 
 /*
@@ -19,19 +19,19 @@ export class AdminHireService {
 
   constructor(public http: Http) {
     console.log('Hello AdminDriverService Provider');
-    this.baseURL = 'http://localhost:8080/';
+    this.baseURL = 'http://localhost:8080/rest';  
   }
 
 
   getListOfHireDetails():Observable<Hire[]>{
-    let url = `${this.baseURL}hire`;
+    let url = `${this.baseURL}/hire`;
     return this.http.get(url)
                     .map((res:Response) => <Hire[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getHireDetails(id:number):Observable<Hire>{
-    let url = `${this.baseURL}hire/${id}`;
+    let url = `${this.baseURL}/hire/${id}`;
     return this.http.get(url)
                     .map(res => <Hire>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
@@ -40,11 +40,15 @@ export class AdminHireService {
 
   addHireDetails(hire:Hire):Observable<Hire[]>{
     let bodyString = JSON.stringify(hire);
-    let headers = new Headers({ 'Content-Type': 'application/json' }); 
+    let headers = new Headers({ 'Content-Type': 'application/json' ,
+      "Authorization": "Basic " + btoa('username:password'),
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'POST',
+      'Access-Control-Allow-Origin': '*'});
+
     let options = new RequestOptions({ headers: headers });
 
-    let url = `${this.baseURL}hire/add/`;
-
+    let url = `${this.baseURL}/hire/add/`;
     return this.http.post(url, hire, options)
                       .map((res:Response) => res.json()) 
                       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
@@ -57,7 +61,9 @@ export class AdminHireService {
     let headers = new Headers({ 'Content-Type': 'application/json' }); 
     let options = new RequestOptions({ headers: headers });
 
-    let url = `${this.baseURL}driver/edit`;
+    let url = `${this.baseURL}/driver/edit`;
+
+    console.log(hire);
 
     return this.http.put(`${url}/${hire.id}`, hire, options) 
                          .map((res:Response) => res.json()) 
@@ -65,7 +71,7 @@ export class AdminHireService {
   }
 
   removeHireDetails(hire:Hire):Observable<Hire[]>{
-    let url = `${this.baseURL}driver/delete`;
+    let url = `${this.baseURL}/driver/delete`;
     return this.http.delete(`${url}/${hire.id}`) 
                         .map((res:Response) => res.json()) 
                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 

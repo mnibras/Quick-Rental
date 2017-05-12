@@ -16,8 +16,14 @@ import {AdminAddCar} from "../pages/admin-add-car/admin-add-car";
 import {HireStep1} from "../pages/hire-step1/hire-step1";
 import {HireStep2} from "../pages/hire-step2/hire-step2";
 import {HireStep3} from "../pages/hire-step3/hire-step3";
-
+import {RentStep1} from "../pages/rent-step1/rent-step1";
+import {RentStep2} from "../pages/rent-step2/rent-step2";
+import {RentStep3} from "../pages/rent-step3/rent-step3";
 import {CustomerHireNotification} from "../pages/customer-hire-notification/customer-hire-notification";
+import {CustomerRentNotification} from "../pages/customer-rent-notification/customer-rent-notification";
+import {CustomerNotifications} from "../pages/customer-notifications/customer-notifications";
+
+
 
 import {AdminRentDetails} from "../pages/admin-rent-details/admin-rent-details";
 import {AdminNotifications} from "../pages/admin-notifications/admin-notifications";
@@ -47,9 +53,14 @@ import {AdminUpdateCar} from "../pages/admin-update-car/admin-update-car";
     HireStep1,
     HireStep2,
     HireStep3,
+    RentStep1,
+    RentStep2,
+    RentStep3,
     AdminAddDriver,
     AdminAddCar,
+    CustomerNotifications,
     CustomerHireNotification,
+    CustomerRentNotification,
     AdminRentDetails,
     AdminNotifications,
     AdminHireDetails,
@@ -77,9 +88,14 @@ import {AdminUpdateCar} from "../pages/admin-update-car/admin-update-car";
     HireStep1,
     HireStep2,
     HireStep3,
+    RentStep1,
+    RentStep2,
+    RentStep3,
     AdminAddDriver,
     AdminAddCar,
+    CustomerNotifications,
     CustomerHireNotification,
+    CustomerRentNotification,
     AdminRentDetails,
     AdminNotifications,
     AdminHireDetails,

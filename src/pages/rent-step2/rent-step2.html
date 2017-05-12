@@ -1,0 +1,33 @@
+<!--
+  Generated template for the RentStep2 page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title align="center">Vehicle Details</ion-title>
+  </ion-navbar>
+
+
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+    <ion-list>
+        <ion-item>
+          <ion-thumbnail>
+            <img src="">
+          </ion-thumbnail>
+          <h3>{{vehicle.modelName}}</h3>
+          <p>{{vehicle.noOfSeats}}</p>
+          <p>{{vehicle.colour}}</p>
+          <p>{{vehicle.amount}}</p>
+          <button ion-button clear (click)="reserveVehicle(vehicle.id)">Reerve</button>
+        </ion-item>
+      </ion-list>
+  </div>
+
+</ion-content>

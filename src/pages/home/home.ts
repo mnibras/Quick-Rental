@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import {HireStep1} from '../hire-step1/hire-step1';
+import {RentStep1} from '../rent-step1/rent-step1';
 import {Login} from '../login/login';
+import {CustomerNotifications} from '../customer-notifications/customer-notifications';
 import {LoginService} from "../../providers/login-service";
 
 @Component({
@@ -19,18 +21,17 @@ export class HomePage {
     this.navCtrl.push(HireStep1);
   }
 
-  logoutUser(){
-      /*this.loginService.logoutUser().then(() =>{
-          this.navCtrl.setRoot(Login);
-      });
-
-      let loader = this.loadingCtrl.create({
-        dismissOnPageChange: true,
-        content: "Logout..."
-      });
-
-      loader.present();*/
-
+  loadRentPage(){
+    this.navCtrl.push(RentStep1);
   }
+
+  loadNotificationsPage(){
+    this.navCtrl.push(CustomerNotifications);
+  }
+
+  logoutUser(){
+     
+  }
+
 
 }

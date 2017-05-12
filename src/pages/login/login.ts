@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
-//import { HomePage } from '../home/home';
+import { HomePage } from '../home/home';
 import {Register} from "../register/register";
 import {AdminDashboard} from "../admin-dashboard/admin-dashboard";
 //import {NgForm} from "@angular/forms";
@@ -39,7 +39,8 @@ export class Login {
   }
 
   onSubmitLogin(formData){
-    this.navCtrl.push(AdminDashboard);
+        this.navCtrl.push(HomePage);
+
   }
 
   onLoadSignUp(){

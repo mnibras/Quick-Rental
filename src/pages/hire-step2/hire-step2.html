@@ -14,26 +14,26 @@
 
 
 <ion-content padding>
-  <form #form="ngForm" (ngSubmit)="submitHireDate(form.value)">
+  <form #form="ngForm" (ngSubmit)="submitHireDetails(form.value)">
         <ion-list>
           <ion-item>
-            <ion-input placeholder="Your Location" disabled=true></ion-input>    
+            <ion-input value="{{hire.location}}" disabled=true></ion-input>    
+          </ion-item>
+
+          <ion-item>  
+            <ion-input value="{{hire.destination}}" disabled=true></ion-input>     
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="Destination" disabled=true></ion-input>     
+            <ion-datetime placeholder="Travel Date" [(ngModel)]=hireDate name="hireDate" displayFormat="MM/DD/YYYY"></ion-datetime>
           </ion-item>
 
           <ion-item>
-            <ion-datetime placeholder="Travel Date" displayFormat="MM/DD/YYYY"></ion-datetime>
-          </ion-item>
-
-          <ion-item>
-            <ion-datetime placeholder="Travel Time"  displayFormat="hh:mm:A"></ion-datetime>
+            <ion-datetime placeholder="Travel Time" [(ngModel)]=hireTime name="hireTime" displayFormat="hh:mm:A"></ion-datetime>
           </ion-item>
           
           <ion-item>
-              <ion-select placeholder="No of Seats" multiple="true">
+              <ion-select placeholder="No of Seats" [(ngModel)]=bookingSeats name="bookingSeats" multiple="true">
                 <ion-option>1</ion-option>
                 <ion-option>2</ion-option>
                 <ion-option>3</ion-option>

@@ -17,7 +17,7 @@
     <form #form="ngForm" (ngSubmit)="confirmHireCar(form.value)"> 
       <ion-list>
         <ion-item>
-          <ion-textarea placeholder="Enter additional details."></ion-textarea>
+          <ion-textarea placeholder="Enter additional details." name="description" [(ngModel)]=description></ion-textarea>
         </ion-item>
 
         <ion-item>

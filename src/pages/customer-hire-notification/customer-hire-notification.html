@@ -16,21 +16,14 @@
 <ion-content padding>
   <div>
     <ion-list>
-      <ion-item>
-        <ion-label>Payment Details</ion-label>
-        <br><br><br>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Car Details</ion-label>
-        <br><br><br>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Driver Details</ion-label>
-        <br><br><br>
+      <ion-item *ngFor="let hire of hireList">
+          <p>{{hire.destination}}<p>
+          <p>{{hire.hireDate}}</p>
+          <p>{{hire.hireTime}}</p>
+          <p *ngIf="hire.description">{{hire.description}}</p>
       </ion-item>
     </ion-list>
+  
 
     <button ion-item (click)="hireNotificationClose()"></button>
   </div>
