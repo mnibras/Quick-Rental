@@ -1,0 +1,96 @@
+<!--
+  Generated template for the AdminUpdateDriver page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Modify Driver Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="submitToUpdateDriver(form.value)">
+    <ion-list>
+      <ion-item>
+        <ion-label floating color="appbase">Full Name</ion-label>
+        <ion-input
+          name="fullname"
+          type="text"
+          [(ngModel)]= "driver.fullname"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">E-Mail</ion-label>
+        <ion-input
+          name="email"
+          type="text"
+          [(ngModel)]= "driver.email"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">NIC</ion-label>
+        <ion-input
+          name="nic"
+          type="text"
+          [(ngModel)]= "driver.nic"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Address</ion-label>
+        <ion-input
+          name="address"
+          type="text"
+          [(ngModel)]= "driver.address"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Phone</ion-label>
+        <ion-input
+          name="phone"
+          type="text"
+          [(ngModel)]= "driver.phone"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">License No</ion-label>
+        <ion-input
+          name="licenseNo"
+          type="text"
+          [(ngModel)]= "driver.licenseNo"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Available</ion-label>
+        <ion-input
+          name="available"
+          type="text"
+          [(ngModel)]= "driver.available"
+          required>
+        </ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <button ion-button block type="submit" [disabled] = "!form.valid" >Add Driver</button>
+      </ion-item>
+
+    </ion-list>
+  </form>
+</ion-content>

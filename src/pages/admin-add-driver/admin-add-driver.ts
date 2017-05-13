@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, App} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 
 import {User} from "../../app/model/user";
@@ -17,21 +17,11 @@ import {AdminDriverService} from "../../providers/admin-driver-service";
   templateUrl: 'admin-add-driver.html',
 })
 export class AdminAddDriver {
-  private userListDto: User[];
-  private userDto:User;
-  private user = {
-    name : '',
-    email : '',
-    password:'',
-    address:'',
-    phone:0,
-    nic:'',
-    userRole:'driver',
-    licenseNo:''
-  };
+  private driver:User;
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public adminDriverService:AdminDriverService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public adminDriverService:AdminDriverService,
+              public appCtrl: App) {
+    this.driver = new User();
   }
 
   ionViewDidLoad() {
@@ -40,21 +30,17 @@ export class AdminAddDriver {
 
 
 
-  submitToAddDrivers(form:NgForm){
-    this.userDto.fullname = this.user.name;
-    this.userDto.address = this.user.address;
-    this.userDto.nic = this.user.nic;
-    this.userDto.phone = this.user.phone;
+  submitToAddDriver(form:NgForm){
+    this.driver.userRole = 3;
 
-    console.log("userDto.phone : "+ this.userDto.phone);
-
-    this.adminDriverService.addDriver(this.userDto).subscribe(
-                                userRes => {
-                                    this.userListDto = userRes
-                                },
-                                err => {
-                                    console.log(err);
-                                });
+    console.log("submitToAddDriver : "+ JSON.stringify(this.driver));
+    this.adminDriverService.addDriver(this.driver)
+      .subscribe(
+        (data:any) => {
+          this.navCtrl.pop();
+          console.log(data);
+        }
+      );
   }
 
 }

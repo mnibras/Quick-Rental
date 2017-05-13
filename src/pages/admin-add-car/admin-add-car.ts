@@ -35,7 +35,10 @@ export class AdminAddCar {
     console.log("submitToAddCar : "+ JSON.stringify(this.vehicle));
     this.adminCarService.addVehicle(this.vehicle)
                         .subscribe(
-                          (data:any) => console.log(data)
+                          (data:any) => {
+                            this.navCtrl.pop();
+                            console.log(data);
+                          }
                         );
   }
 

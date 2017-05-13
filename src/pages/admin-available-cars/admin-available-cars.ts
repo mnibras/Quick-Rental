@@ -6,6 +6,7 @@ import {AdminCarService} from "../../providers/admin-car-service";
 import {AdminVehicle} from "../admin-vehicle/admin-vehicle";
 import {AdminAddCar} from "../admin-add-car/admin-add-car";
 import {AdminUpdateCar} from "../admin-update-car/admin-update-car";
+import {AdminDashboard} from "../admin-dashboard/admin-dashboard";
 
 /**
  * Generated class for the AdminAvailableCars page.
@@ -29,6 +30,10 @@ export class AdminAvailableCars {
 
   ngOnInit()
   {
+    this.getListOfVehicles();
+  }
+
+  ionViewWillEnter() {
     this.getListOfVehicles();
   }
 
@@ -64,6 +69,8 @@ export class AdminAvailableCars {
                           err => {
                             console.log("Error : "+err);
                           });
+
+    this.navCtrl.popTo(AdminDashboard);
   }
 
 }

@@ -32,7 +32,10 @@ export class AdminUpdateCar {
     console.log("submitToUpdateCar : "+ JSON.stringify(this.vehicle));
     this.adminCarService.editVehicle(this.vehicle)
       .subscribe(
-        (data:any) => console.log(data)
+        (data:any) => {
+          this.navCtrl.pop();
+          console.log(data);
+        }
       );
   }
 

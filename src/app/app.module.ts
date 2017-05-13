@@ -41,6 +41,8 @@ import {LoginService} from "../providers/login-service";
 import {UserService} from "../providers/user-service";
 import {AdminVehicle} from "../pages/admin-vehicle/admin-vehicle";
 import {AdminUpdateCar} from "../pages/admin-update-car/admin-update-car";
+import {AdminDriver} from "../pages/admin-driver/admin-driver";
+import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-driver";
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import {AdminUpdateCar} from "../pages/admin-update-car/admin-update-car";
     AdminRentNotification,
     AdminRentHistory,
     AdminVehicle,
-    AdminUpdateCar
+    AdminUpdateCar,
+    AdminDriver,
+    AdminUpdateDriver
   ],
   imports: [
     HttpModule,
@@ -106,7 +110,9 @@ import {AdminUpdateCar} from "../pages/admin-update-car/admin-update-car";
     AdminRentNotification,
     AdminRentHistory,
     AdminVehicle,
-    AdminUpdateCar
+    AdminUpdateCar,
+    AdminDriver,
+    AdminUpdateDriver
   ],
   providers: [
     StatusBar,
