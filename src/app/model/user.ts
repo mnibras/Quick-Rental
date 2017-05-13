@@ -8,6 +8,7 @@ export class User {
   nic: string;
   userRole: number;
   licenseNo: string;
+  available: Boolean
 
   User(){
     this.id = 0;
@@ -19,6 +20,8 @@ export class User {
     this.nic = "";
     this.userRole = 0;
     this.licenseNo = "";
+    this.available = true;
+    
   }
 
 

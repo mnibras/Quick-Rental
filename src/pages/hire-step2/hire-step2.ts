@@ -34,7 +34,7 @@ export class HireStep2 {
 
     customer: null,
     driver: null,
-    vehicle: null
+    vehicle: null,
   
   }
 

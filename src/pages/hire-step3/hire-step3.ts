@@ -4,6 +4,8 @@ import { HomePage } from '../home/home';
 import { CustomerHireNotification } from '../customer-hire-notification/customer-hire-notification';
 import { AlertController } from 'ionic-angular';
 import { AdminHireService } from '../../providers/admin-hire-service';
+import { CustomerService } from '../../providers/customer-service';
+import { User } from '../../app/model/user'
 
 /**
  * Generated class for the HireStep3 page.
@@ -19,6 +21,8 @@ import { AdminHireService } from '../../providers/admin-hire-service';
 export class HireStep3 {
   
   public description: String;
+  public customerId: number;
+  public customer: User;
 
 
   hire = {
@@ -37,14 +41,16 @@ export class HireStep3 {
 
     customer: null,
     driver: null,
-    vehicle: null
+    vehicle: null,
+    
   
   }
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
-              private adminHireService: AdminHireService) {
+              private adminHireService: AdminHireService,
+              private customerService: CustomerService) {
 
     this.hire = navParams.get('hire');
   }
@@ -56,6 +62,15 @@ export class HireStep3 {
   confirmHireCar(formData){
     this.hire.description = formData.description;
 
+    this.customerId = 100;
+    this.getCustomer(this.customerId);
+    this.hire.customer = this.customer;
+
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    console.log(this.hire.customer);
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    
+
     this.adminHireService.addHireDetails(this.hire)
                           .subscribe(
                               (response:any) => console.log(response)
@@ -64,6 +79,20 @@ export class HireStep3 {
     this.showAlert();
     this.navCtrl.push(CustomerHireNotification);
   }
+
+
+  getCustomer(id: number){
+    this.customerService.getCustomer(id).subscribe(
+                                data => {
+                                    this.customer = data;
+                                    console.log(JSON.stringify(data));
+                                },
+                                err => {
+                                    console.log("Error : "+err);
+                                });
+  }
+
+
 
   showAlert() {
     

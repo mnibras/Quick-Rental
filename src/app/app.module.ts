@@ -41,6 +41,7 @@ import {LoginService} from "../providers/login-service";
 import {UserService} from "../providers/user-service";
 import {AdminVehicle} from "../pages/admin-vehicle/admin-vehicle";
 import {AdminUpdateCar} from "../pages/admin-update-car/admin-update-car";
+import {CustomerService} from "../providers/customer-service";
 
 
 @NgModule({
@@ -116,7 +117,8 @@ import {AdminUpdateCar} from "../pages/admin-update-car/admin-update-car";
     AdminDriverService,
     AdminHireService,
     LoginService,
-    UserService
+    UserService,
+    CustomerService
   ]
 })
 export class AppModule {}

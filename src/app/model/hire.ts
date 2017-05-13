@@ -16,8 +16,8 @@ export class Hire {
   status:number;
 
   customer:User;
-  vehicle:Vehicle;
   driver:User;
+  vehicle:Vehicle;
 
 
 
