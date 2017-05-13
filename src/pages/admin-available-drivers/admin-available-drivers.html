@@ -8,32 +8,39 @@
 
   <ion-navbar color="primary">
     <ion-title>Available Drivers</ion-title>
+    <ion-buttons end (click)="loadAddDriverPage()">
+      <button><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
-      </ion-avatar>
-      <p>Driver Name 1</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
-      </ion-avatar>
-      <p>Driver Name 2</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png">
-      </ion-avatar>
-      <p>Driver Name 3</p>
-    </ion-item>
-  </ion-list>
+    <ion-list>
+      <ion-item-sliding *ngFor="let driver of driverList">
+        <ion-item (click)="viewDriver(driver)">
+          <ion-avatar item-left>
+            <img src="https://cdn0.iconfinder.com/data/icons/iconshock_guys/512/andrew.png" width="10px" height="10px">
+          </ion-avatar>
+          <p>{{driver.fullname}}</p>
+        </ion-item>
+        <ion-item-options side="left" >
+          <button ion-button color="primary" (click)="viewDriver(driver)">
+            <ion-icon name="eye"></ion-icon>
+            View
+          </button>
+          <button ion-button color="secondary" (click)="updateDriver(driver)">
+            <ion-icon name="open"></ion-icon>
+            Edit
+          </button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="deleteDriver(driver.id)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
 </ion-content>

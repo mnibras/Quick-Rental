@@ -18,10 +18,19 @@ export class AdminCarService {
 
   private baseURL:string = '';
   public vehicleDto: Vehicle;
+  private _headers: Headers;
+  private _options: RequestOptions;
 
   constructor(public http: Http) {
     console.log('Hello AdminDriverService Provider');
     this.baseURL = 'http://localhost:8080/rest';
+
+    this._headers = new Headers({ 'Content-Type': 'application/json' ,
+      "Authorization": "Basic " + btoa('username:password'),
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Origin': '*'});
+    this._options = new RequestOptions({ headers: this._headers });
   }
 
   getVehicle(id:number):Observable<Vehicle>{
@@ -30,13 +39,12 @@ export class AdminCarService {
                     .map(res => <Vehicle>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
-
   }
 
   getVehiclesList(): Observable<Vehicle[]>{
     let url = `${this.baseURL}/vehicle`;
 
-    return this.http.get(url)
+    return this.http.get(url,this._options)
                     .map((res:Response) => <Vehicle[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     /*var response = this.http.get(url).map(res => res.json());
@@ -47,51 +55,28 @@ export class AdminCarService {
   addVehicle(vehicle: Vehicle): Observable<Vehicle>{
     console.log("addVehicle : "+ JSON.stringify(vehicle));
     const body = JSON.stringify(vehicle);
-    let headers = new Headers({ 'Content-Type': 'application/json' ,
-      "Authorization": "Basic " + btoa('username:password'),
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'POST',
-      'Access-Control-Allow-Origin': '*'});
-
-    let options = new RequestOptions({ headers: headers });
-
 
     let url = `${this.baseURL}/vehicle/add`;
 
-    return this.http.post(url, body,options)
+    return this.http.post(url, body,this._options)
                       .map((res:Response) => res.json());
   }
 
   editVehicle(vehicle: Vehicle): Observable<Vehicle>{
     console.log("editVehicle : "+ JSON.stringify(vehicle));
     const body = JSON.stringify(vehicle);
-    let headers = new Headers({ 'Content-Type': 'application/json' ,
-      "Authorization": "Basic " + btoa('username:password'),
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'PUT',
-      'Access-Control-Allow-Origin': '*'});
-
-    let options = new RequestOptions({ headers: headers });
-
 
     let url = `${this.baseURL}/vehicle/edit`;
 
-    return this.http.put(url, body, options)
+    return this.http.put(url, body, this._options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  removeVehicle(id: number){
-    let headers = new Headers({ 'Content-Type': 'application/json' ,
-      "Authorization": "Basic " + btoa('username:password'),
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'PUT',
-      'Access-Control-Allow-Origin': '*'});
-
-    let options = new RequestOptions({ headers: headers });
+  removeVehicle(id: number): Observable<string>{
 
     let url = `${this.baseURL}/vehicle/delete/${id}`;
-     return this.http.delete(url,options)
+     return this.http.delete(url,this._options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

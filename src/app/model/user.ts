@@ -8,7 +8,8 @@ export class User {
   nic: string;
   userRole: number;
   licenseNo: string;
-  available: Boolean
+  available:boolean;
+
 
   User(){
     this.id = 0;
@@ -20,8 +21,8 @@ export class User {
     this.nic = "";
     this.userRole = 0;
     this.licenseNo = "";
-    this.available = true;
-    
+    this.available = false;
+
   }
 
 
@@ -94,7 +95,5 @@ export class User {
   set licenseNo(theLicenseNo:string) {
     this._licenseNo = theLicenseNo;
   }*/
-
-
 
 }

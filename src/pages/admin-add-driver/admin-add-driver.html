@@ -14,30 +14,76 @@
 
 
 <ion-content padding>
-  <div>
-      <form #form="ngForm" (ngSubmit)="submitToAddDrivers(form.value)">
+      <form #form="ngForm" (ngSubmit)="submitToAddDriver(form.value)">
         <ion-list>
           <ion-item>
-            <ion-input placeholder="enter driver name" type="text" name="name" [(ngModel)]= "user.name" required></ion-input>
+            <ion-label floating color="appbase">Full Name</ion-label>
+            <ion-input
+              name="fullname"
+              type="text"
+              [(ngModel)]= "driver.fullname"
+              required>
+            </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input  placeholder="enter driver nic" type="text" name="nic" [(ngModel)]= "user.nic" required ></ion-input>
+            <ion-label floating color="appbase">E-Mail</ion-label>
+            <ion-input
+              name="email"
+              type="text"
+              [(ngModel)]= "driver.email"
+              required>
+            </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input  placeholder="enter driver address" type="text" name="address" [(ngModel)]= "user.address" required ></ion-input>
+            <ion-label floating color="appbase">NIC</ion-label>
+            <ion-input
+              name="nic"
+              type="text"
+              [(ngModel)]= "driver.nic"
+              required>
+            </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input  placeholder="enter driver phone" type="text" name="phone" [(ngModel)]= "user.phone" required ></ion-input>
+            <ion-label floating color="appbase">Address</ion-label>
+            <ion-input
+              name="address"
+              type="text"
+              [(ngModel)]= "driver.address"
+              required>
+            </ion-input>
           </ion-item>
 
           <ion-item>
-            <button ion-button icon-left>
-              <ion-icon name="person-add"></ion-icon>
-              Upload Picture
-            </button>
+            <ion-label floating color="appbase">Phone</ion-label>
+            <ion-input
+              name="phone"
+              type="text"
+              [(ngModel)]= "driver.phone"
+              required>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating color="appbase">License No</ion-label>
+            <ion-input
+              name="licenseNo"
+              type="text"
+              [(ngModel)]= "driver.licenseNo"
+              required>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating color="appbase">Available</ion-label>
+            <ion-input
+              name="available"
+              type="text"
+              [(ngModel)]= "driver.available"
+              required>
+            </ion-input>
           </ion-item>
 
 
@@ -47,6 +93,5 @@
 
         </ion-list>
       </form>
-    </div>
 
 </ion-content>
