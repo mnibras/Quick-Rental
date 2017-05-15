@@ -47,7 +47,7 @@ export class Login {
   }
 
   onLoadSignUp(){
-    this.navCtrl.push(Register);
+    this.navCtrl.setRoot(Register);
   }
 
   handleError(error: any) {

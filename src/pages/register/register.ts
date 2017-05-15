@@ -35,10 +35,6 @@ export class Register {
     console.log('ionViewDidLoad Register');
   }
 
-  //loading pages
-  onLoadLogin(){
-    this.navCtrl.pop();
-  }
 
   //submit pages
   signup(value: any) {

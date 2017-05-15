@@ -6,8 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title align="center">Registration Page</ion-title>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Signup</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -65,9 +70,6 @@
 
       </ion-list>
     </form>
-    <h4 align="center">- or -</h4>
-    <div padding>
-      <p align="center"><a (click)="onLoadLogin()" >Login</a></p>
-    </div>
+
   </div>
 </ion-content>
