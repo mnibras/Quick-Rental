@@ -3,13 +3,16 @@
     <ion-title>
       Home Page
     </ion-title>
-      <button ion-button block (click)="logoutUser()">
-        <ion-icon name="person"></ion-icon>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
       </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  Welcome <strong>{{user}}</strong>
   <div>
     <button ion-button block (click)="loadHirePage()">For Hire</button>
   </div>

@@ -42,7 +42,7 @@ export class AdminAvailableCars {
     this.adminCarService.getVehiclesList().subscribe(
                                 data => {
                                     this.vehiclesList = data;
-                                    console.log(JSON.stringify(data));
+                                    console.log(JSON.stringify(this.vehiclesList));
                                 },
                                 err => {
                                     console.log("Error : "+err);

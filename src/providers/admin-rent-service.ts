@@ -19,6 +19,8 @@ export class AdminRentService {
   constructor(public http: Http) {
     console.log('Hello AdminRentService Provider');
     this.baseURL = 'http://localhost:8080/';
+
+
   }
 
   getListOfRentDetails():Observable<Rent[]>{

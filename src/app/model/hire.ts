@@ -5,13 +5,13 @@ export class Hire {
   id:number;
   amount:number;
   bookingSeats:number;
-  description: String;
-  destination:String;
+  description: string;
+  destination:string;
   endMilage:number;
-  hireDate:String;
-  hireTime:String;
+  hireDate:string;
+  hireTime:string;
   isFinished:number;
-  location:String;
+  location:string;
   startMilage:number;
   status:number;
 

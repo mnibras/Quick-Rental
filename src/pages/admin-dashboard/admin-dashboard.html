@@ -6,14 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title align="center">Admin Dashboard</ion-title>
+  <ion-navbar>
+    <ion-title>
+      Admin Dashboard
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  Welcome <strong>{{user}}</strong>
+
 
   <ion-card>
     <ion-card-header>

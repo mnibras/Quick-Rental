@@ -3,7 +3,10 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpModule } from '@angular/http';
+import {HttpModule, RequestOptions, Http} from '@angular/http';
+import {AuthHttp, AuthConfig, JwtHelper} from "angular2-jwt";
+import {Storage, IonicStorageModule} from "@ionic/storage";
+import {CustomFormsModule} from "ng2-validation";
 
 
 import { MyApp } from './app.component';
@@ -44,7 +47,16 @@ import {AdminUpdateCar} from "../pages/admin-update-car/admin-update-car";
 import {CustomerService} from "../providers/customer-service";
 import {AdminDriver} from "../pages/admin-driver/admin-driver";
 import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-driver";
+import {AuthService} from "../providers/auth-service";
 
+
+
+  export function authHttpServiceFactory(http: Http, options: RequestOptions, storage: Storage) {
+    const authConfig = new AuthConfig({
+      tokenGetter: (() => storage.get('jwt')),
+    });
+    return new AuthHttp(authConfig, http, options);
+  }
 
 @NgModule({
   declarations: [
@@ -81,7 +93,12 @@ import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-drive
   imports: [
     HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name: 'myapp',
+      driverOrder: ['sqlite', 'indexeddb', 'websql']
+    }),
+    CustomFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -119,6 +136,12 @@ import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-drive
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthService,
+    JwtHelper, {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions, Storage]
+    },
     AdminCarService,
     AdminDriverService,
     AdminHireService,
