@@ -10,6 +10,7 @@ import {AuthService} from "../providers/auth-service";
 import {JwtHelper} from "angular2-jwt";
 import {HomePage} from "../pages/home/home";
 import {Register} from "../pages/register/register";
+import {UpdateUserProfile} from "../pages/update-user-profile/update-user-profile";
 
 @Component({
   templateUrl: 'app.html'
@@ -20,6 +21,8 @@ export class MyApp {
   registerPage = Register;
   adminPage = AdminDashboard;
   homePage = HomePage;
+  updateUserPage = UpdateUserProfile;
+
   isAuthenticated = false;
   usrRole = 0;
   userFullname = '';

@@ -3,6 +3,7 @@ export class User {
   fullname: string;
   email: string;
   password: string;
+  confirmPassword: string;
   address: string;
   phone: number;
   nic: string;
@@ -18,6 +19,7 @@ export class User {
     this.fullname = "";
     this.email = "";
     this.password = "";
+    this.confirmPassword = "";
     this.address = "";
     this.phone = 0;
     this.nic = "";

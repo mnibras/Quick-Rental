@@ -32,7 +32,7 @@ export class AdminDriverService {
 
   getDriver(id:number):Observable<User>{
     let url = `${SERVER_URL}/driver/${id}`;
-    return this.authHttp.get(url)
+    return this.authHttp.get(url,this._options)
                     .map(res => <User>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

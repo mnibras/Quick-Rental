@@ -6,7 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import {HttpModule, RequestOptions, Http} from '@angular/http';
 import {AuthHttp, AuthConfig, JwtHelper} from "angular2-jwt";
 import {Storage, IonicStorageModule} from "@ionic/storage";
-import {CustomFormsModule} from "ng2-validation";
 
 
 import { MyApp } from './app.component';
@@ -48,6 +47,8 @@ import {CustomerService} from "../providers/customer-service";
 import {AdminDriver} from "../pages/admin-driver/admin-driver";
 import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-driver";
 import {AuthService} from "../providers/auth-service";
+import {UpdateUserProfile} from "../pages/update-user-profile/update-user-profile";
+import {CustomFormsModule} from "ng2-validation";
 
 
 
@@ -88,7 +89,8 @@ import {AuthService} from "../providers/auth-service";
     AdminVehicle,
     AdminUpdateCar,
     AdminDriver,
-    AdminUpdateDriver
+    AdminUpdateDriver,
+    UpdateUserProfile
   ],
   imports: [
     HttpModule,
@@ -130,7 +132,8 @@ import {AuthService} from "../providers/auth-service";
     AdminVehicle,
     AdminUpdateCar,
     AdminDriver,
-    AdminUpdateDriver
+    AdminUpdateDriver,
+    UpdateUserProfile
   ],
   providers: [
     StatusBar,

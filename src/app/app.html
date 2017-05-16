@@ -36,6 +36,13 @@
               </button>
 
               <button ion-item item-left
+                      (click)="onLoad(updateUserPage)"
+                      *ngIf="isAuthenticated">
+                <ion-icon class="font" name="person"></ion-icon>
+                <strong class="font">User Profile</strong>
+              </button>
+
+              <button ion-item item-left
                       (click)="onLoad(loginPage)"
                       *ngIf="!isAuthenticated">
                 <ion-icon class="font" name="log-in"></ion-icon>
