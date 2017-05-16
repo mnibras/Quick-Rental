@@ -5,42 +5,62 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="bg-color">
+
+
     <ion-list>
-      <button ion-item item-left
-        (click)="onLoad(adminPage)"
-        *ngIf="isAuthenticated && usrRole === 1">
-        <ion-icon class="font" name="book"></ion-icon>
-        <strong class="font">Admin Dashboard</strong>
-      </button>
+        <ion-card>
+          <img *ngIf="isAuthenticated" src="https://ionicframework.com/dist/preview-app/www/assets/img/advance-card-bttf.png">
+          <ion-item *ngIf="isAuthenticated">
+            <ion-avatar item-left>
+              <img src="https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">
+            </ion-avatar>
+            <h2>{{userFullname}}</h2>
+            <p color="light">{{userEmail}}</p>
+            <hr>
+          </ion-item>
 
+          <ion-card-content>
+            <ion-list>
+              <button ion-item item-left
+                      (click)="onLoad(adminPage)"
+                      *ngIf="isAuthenticated && usrRole === 1">
+                <ion-icon class="font" name="book"></ion-icon>
+                <strong class="font">Admin Dashboard</strong>
+              </button>
 
-      <button ion-item item-left
-        (click)="onLoad(homePage)"
-        *ngIf="isAuthenticated && usrRole === 2">
-        <ion-icon class="font" name="book"></ion-icon>
-        <strong class="font">Dashboard</strong>
-      </button>
+              <button ion-item item-left
+                      (click)="onLoad(homePage)"
+                      *ngIf="isAuthenticated && usrRole === 2">
+                <ion-icon class="font" name="book"></ion-icon>
+                <strong class="font">Dashboard</strong>
+              </button>
 
-      <button ion-item item-left
-        (click)="onLoad(loginPage)"
-        *ngIf="!isAuthenticated">
-        <ion-icon class="font" name="log-in"></ion-icon>
-        <strong class="font">Signin</strong>
-      </button>
+              <button ion-item item-left
+                      (click)="onLoad(loginPage)"
+                      *ngIf="!isAuthenticated">
+                <ion-icon class="font" name="log-in"></ion-icon>
+                <strong class="font">Signin</strong>
+              </button>
 
-      <button ion-item item-left
-        (click)="onLoad(registerPage)"
-        *ngIf="!isAuthenticated">
-        <ion-icon class="font" name="person"></ion-icon>
-        <strong class="font">Signup</strong>
-      </button>
+              <button ion-item item-left
+                      (click)="onLoad(registerPage)"
+                      *ngIf="!isAuthenticated">
+                <ion-icon class="font" name="person"></ion-icon>
+                <strong class="font">Signup</strong>
+              </button>
 
-      <button ion-item item-left
-              (click)="onLogout()"
-              *ngIf="isAuthenticated">
-        <ion-icon class="font" name="log-out"></ion-icon>
-        <strong class="font">Logout</strong>
-      </button>
+              <button ion-item item-left
+                      (click)="onLogout()"
+                      *ngIf="isAuthenticated">
+                <ion-icon class="font" name="log-out"></ion-icon>
+                <strong class="font">Logout</strong>
+              </button>
+
+            </ion-list>
+          </ion-card-content>
+          <br><br><br><br><br><br><br><br><br><br><br>
+
+        </ion-card>
 
     </ion-list>
   </ion-content>

@@ -22,6 +22,8 @@ export class MyApp {
   homePage = HomePage;
   isAuthenticated = false;
   usrRole = 0;
+  userFullname = '';
+  userEmail = '';
 
   @ViewChild('nav') nav: NavController;
 
@@ -48,6 +50,10 @@ export class MyApp {
         this.isAuthenticated = true;
         const decoded = this.jwtHelper.decodeToken(jwt);
         this.usrRole = decoded.role;
+        this.userFullname = decoded.fullname;
+        this.userEmail = decoded.email;
+
+        console.log(JSON.stringify("decoded : "+ decoded));
 
         if(this.usrRole == 1)
           this.rootPage = AdminDashboard;

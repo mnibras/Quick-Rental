@@ -18,8 +18,8 @@ export class Vehicle {
     this.noOfSeats = 0;
     this.vehicleNo = "";
     this.modelName = "";
-    this.rentPerDay = 0;
-    this.hirePerMilage = 0;
+    this.rentPerDay = 0.0;
+    this.hirePerMilage = 0.0;
     this.colour = "";
     this.year = 0;
     this.currentMillage = 0;

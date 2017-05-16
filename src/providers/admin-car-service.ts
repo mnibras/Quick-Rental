@@ -61,13 +61,13 @@ export class AdminCarService {
                       .map((res:Response) => res.json());
   }
 
-  editVehicle(vehicle: Vehicle): Observable<Vehicle>{
+    editVehicle(vehicle: Vehicle): Observable<Vehicle>{
     console.log("editVehicle : "+ JSON.stringify(vehicle));
     const body = JSON.stringify(vehicle);
 
     let url = `${SERVER_URL}/vehicle/edit`;
 
-    return this.authHttp.put(url, body, this._options)
+    return this.authHttp.post(url, body, this._options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
