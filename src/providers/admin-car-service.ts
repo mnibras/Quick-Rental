@@ -46,9 +46,34 @@ export class AdminCarService {
     return this.authHttp.get(url,this._options)
                     .map((res:Response) => <Vehicle[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-    /*var response = this.http.get(url).map(res => res.json());
-    console.log("getVehiclesList : "+ JSON.stringify(response));
-    return response;*/
+
+  }
+
+  getAllVehiclesList(): Observable<Vehicle[]>{
+    let url = `${SERVER_URL}/vehicle`;
+
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Vehicle[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
+
+  getAvailableVehiclesList(): Observable<Vehicle[]>{
+    let url = `${SERVER_URL}/vehicle/available`;
+
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Vehicle[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
+
+  getUnAvailableVehiclesList(): Observable<Vehicle[]>{
+    let url = `${SERVER_URL}/vehicle/unavailable`;
+
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Vehicle[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
   }
 
   addVehicle(vehicle: Vehicle): Observable<Vehicle>{

@@ -36,7 +36,6 @@ export class UpdateUserProfile {
         this.userFullname = decoded.sub;
         this.userRole = decoded.role;
         this.userId = decoded.userId;
-        console.log("(1) this.userId : "+this.userId);
       }
       else {
         this.user = null;

@@ -56,8 +56,6 @@ export class MyApp {
         this.userFullname = decoded.fullname;
         this.userEmail = decoded.email;
 
-        console.log(JSON.stringify("decoded : "+ decoded));
-
         if(this.usrRole == 1)
           this.rootPage = AdminDashboard;
         else if(this.usrRole ==2 )

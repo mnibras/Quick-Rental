@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, PopoverController, LoadingController} from 'ionic-angular';
 
 import {User} from "../../app/model/user";
 import {AdminDriverService} from "../../providers/admin-driver-service";
@@ -7,6 +7,7 @@ import {AdminAddDriver} from "../admin-add-driver/admin-add-driver";
 import {AdminDriver} from "../admin-driver/admin-driver";
 import {AdminUpdateDriver} from "../admin-update-driver/admin-update-driver";
 import {AdminDashboard} from "../admin-dashboard/admin-dashboard";
+import {DriverMoreOptionPage} from "../driver-more-option-page/driver-more-option-page";
 
 
 /**
@@ -22,10 +23,18 @@ import {AdminDashboard} from "../admin-dashboard/admin-dashboard";
 })
 export class AdminAvailableDrivers {
   public driverList:User[];
+  public isDriverListEmpty: boolean;
+  public pageTitle:string ;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public adminDriverService:AdminDriverService) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public adminDriverService:AdminDriverService,
+              private popoverCtrl: PopoverController,
+              private loadingCtrl: LoadingController) {
     this.getDriverDetails();
+    this.isDriverListEmpty = false;
+    this.pageTitle ='All Drivers';
   }
 
   ionViewDidLoad() {
@@ -39,15 +48,92 @@ export class AdminAvailableDrivers {
 
   ionViewWillEnter() {
     this.getDriverDetails();
+    this.pageTitle ='All Drivers';
+  }
+
+  onShowOptions(event: MouseEvent) {
+    const loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    const popover = this.popoverCtrl.create(DriverMoreOptionPage);
+    popover.present({ev: event});
+
+    popover.onDidDismiss(
+      data => {
+        if (!data) {
+          return;
+        }
+        if (data.action == 'all') {
+
+          loading.present();
+          this.adminDriverService.getAllDriversList().subscribe(
+            data => {
+              loading.dismiss();
+              this.driverList = data;
+              this.pageTitle = "All Drivers";
+              this.isDriverListEmpty = this.driverList[0] == null? true : false;
+              console.log(JSON.stringify(this.driverList));
+            },
+            err => {
+              loading.dismiss();
+              this.pageTitle = "Available Drivers";
+              this.driverList = [];
+              this.isDriverListEmpty = true;
+              console.log("Error : "+err);
+            });
+        } else if (data.action == 'available') {
+          loading.present();
+          this.adminDriverService.getAvailableDriversList().subscribe(
+            data => {
+              loading.dismiss();
+              this.pageTitle = "Available Drivers";
+              this.driverList = data;
+              this.isDriverListEmpty = this.driverList[0] == null? true : false;
+              console.log(JSON.stringify(this.driverList));
+            },
+            err => {
+              loading.dismiss();
+              this.pageTitle = "Available Drivers";
+              this.driverList = [];
+              this.isDriverListEmpty = true;
+              console.log("Error : "+err);
+            });
+        }else if (data.action == 'unavailable') {
+          this.pageTitle = "Unavailable Drivers";
+
+          loading.present();
+          this.adminDriverService.getUnAvailableDriversList().subscribe(
+            data => {
+              loading.dismiss();
+              this.pageTitle = "Unavailable Drivers";
+              this.driverList = data;
+              this.isDriverListEmpty = this.driverList[0] == null? true : false;
+              console.log(JSON.stringify(this.driverList));
+            },
+            err => {
+              loading.dismiss();
+              this.pageTitle = "Unavailable Drivers";
+              this.driverList = [];
+              this.isDriverListEmpty = true;
+              console.log("Error : "+err);
+            });
+        }
+      }
+    );
+
   }
 
   getDriverDetails(){
-    this.adminDriverService.getDriversList().subscribe(
+    this.adminDriverService.getAllDriversList().subscribe(
       data => {
+        this.pageTitle = "All Drivers";
         this.driverList = data;
-        console.log(JSON.stringify(data));
+        this.isDriverListEmpty = this.driverList[0] == null? true : false;
+
       },
       err => {
+        this.driverList = [];
+        this.isDriverListEmpty = true;
         console.log("Error : "+err);
       });
   }

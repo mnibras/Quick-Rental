@@ -37,8 +37,20 @@ export class AdminDriverService {
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getDriversList():Observable<User[]>{
+  getAllDriversList():Observable<User[]>{
     let url = `${SERVER_URL}/driver`;
+    return this.authHttp.get(url,this._options)
+                    .map((res:Response) => <User[]>(res.json()))
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  getAvailableDriversList():Observable<User[]>{
+    let url = `${SERVER_URL}/driver/available`;
+    return this.authHttp.get(url,this._options)
+                    .map((res:Response) => <User[]>(res.json()))
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  getUnAvailableDriversList():Observable<User[]>{
+    let url = `${SERVER_URL}/driver/unavailable`;
     return this.authHttp.get(url,this._options)
                     .map((res:Response) => <User[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
