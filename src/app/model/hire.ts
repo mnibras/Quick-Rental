@@ -10,7 +10,7 @@ export class Hire {
   endMilage:number;
   hireDate:string;
   hireTime:string;
-  isFinished:number;
+  finished:boolean;
   location:string;
   startMilage:number;
   status:number;

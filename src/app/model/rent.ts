@@ -12,7 +12,7 @@ export class Rent {
   advanceAmount:number;
   amount:number;
   description:string;
-  isFinished:boolean;
+  finished:boolean;
   status:number;
 
   customer:User;
@@ -29,7 +29,7 @@ export class Rent {
     this.advanceAmount= 0;
     this.amount = 0;
     this.description = "";
-    this.isFinished = false;
+    this.finished = false;
     this.status = 0;
     this.customer = null;
     this.vehicle = null;

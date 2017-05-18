@@ -1,0 +1,186 @@
+<!--
+  Generated template for the AdminHireInfo page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Hire Information</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card color="primary">
+    <ion-card-header>
+      <strong>Hire Details</strong>
+    </ion-card-header>
+    <ion-card-content>
+        <p color="danger" *ngIf="hire.status == 1">Status : Pending</p>
+        <p color="danger" *ngIf="hire.status == 2">Status : Accepted</p>
+        <P color="danger" *ngIf="hire.status == 3">Status : Rejected</P>
+        <p>{{hire.isFinished}}</p>
+        <p>Hire Date : {{hire.hireDate}}</p>
+        <p>Hire Time : {{hire.hireTime}}</p>
+        <p>From : {{hire.location}}</p>
+        <p>To : {{hire.destination}}</p>
+        <p>No of Seats : {{hire.bookingSeats}}</p>
+
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="secondary">
+    <ion-card-header>
+      <strong>Customer Details</strong>
+    </ion-card-header>
+    <ion-card-content>
+        <p>Name : {{hire.customer.fullname}}</p>
+        <p>Address : {{hire.customer.address}}</p>
+        <p>Phone : {{hire.customer.phone}}</p>
+        <p>NIC : {{hire.customer.nic}}</p>
+        <p>E-Mail : {{hire.customer.email}}</p>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card color="danger" *ngIf="!isVehicleListEmpty && hire.status == 1">
+    <ion-card-header>
+      <strong>Assign a vehicle</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Vehicles</ion-label>
+          <ion-select (ionChange)="setSelectedVehicle(vehicle)" [(ngModel)]="vehicle">
+            <ion-option *ngFor="let vehicle of vehiclesList" [value]="vehicle">{{vehicle.vehicleNo}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="danger" *ngIf="isVehicleListEmpty && hire.status == 1">
+    <ion-card-header>
+      <strong>There is no available vehicle</strong>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card color="light" *ngIf="hire.status == 1 && isSetSelectedVehicle">
+    <ion-card-header>
+      <strong>Vehicle Details</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Type : {{selectedVehicle.type}}</p>
+      <p>Model Name : {{selectedVehicle.modelName}}</p>
+      <p>Vehicle No : {{selectedVehicle.vehicleNo}}</p>
+      <p>Colour : {{selectedVehicle.colour}}</p>
+      <p>Current Millage : {{selectedVehicle.currentMillage}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light" *ngIf="hire.status == 2">
+    <ion-card-header>
+      <strong>Vehicle Details</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Type : {{hire.vehicle.type}}</p>
+      <p>Model Name : {{hire.vehicle.modelName}}</p>
+      <p>Vehicle No : {{hire.vehicle.vehicleNo}}</p>
+      <p>Colour : {{hire.vehicle.colour}}</p>
+      <p>Current Millage : {{hire.vehicle.currentMillage}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="danger" *ngIf="!isDriverListEmpty && hire.status == 1">
+    <ion-card-header>
+      <strong>Assign a driver</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Drivers</ion-label>
+          <ion-select (ionChange)="setSelectedDriver(driver)" [(ngModel)]="driver">
+            <ion-option *ngFor="let driver of driversList" [value]="driver">{{driver.fullname}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="danger" *ngIf="isDriverListEmpty && hire.status == 1">
+    <ion-card-header>
+      <strong>There is no available driver</strong>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card color="light" *ngIf="hire.status == 1 && isSetSelectedDriver">
+    <ion-card-header>
+      <strong>Driver Details</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Name : {{selectedDriver.fullname}}</p>
+      <p>NIC : {{selectedDriver.nic}}</p>
+      <p>License No : {{selectedDriver.licenseNo}}</p>
+      <p>Phone : {{selectedDriver.phone}}</p>
+      <p *ngIf="selectedDriver.available">Status : Available</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light" *ngIf="hire.status == 2">
+    <ion-card-header>
+      <strong>Driver Details</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Name : {{hire.driver.fullname}}</p>
+      <p>NIC : {{hire.driver.nic}}</p>
+      <p>License No : {{hire.driver.licenseNo}}</p>
+      <p>Phone : {{hire.driver.phone}}</p>
+      <p *ngIf="hire.driver.available">Status : Available</p>
+      <p *ngIf="!hire.driver.available">Status : Not Available</p>
+
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="hire.status == 2 && !hire.finished">
+    <form #form="ngForm" (ngSubmit)="completeHire(form.value)" novalidate>
+      <ion-list>
+
+        <ion-item>
+          <ion-label floating>Start Millage</ion-label>
+          <ion-input type="text" name="startMillage" [(ngModel)]="hire.startMilage" [readonly]="true" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>End Millage</ion-label>
+          <ion-input type="text" name="endtMillage" [(ngModel)]="hire.endMilage" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-textarea name="description" [(ngModel)]="hire.description" placeholder="Enter a description"></ion-textarea>
+        </ion-item>
+
+        <div padding>
+          <button ion-button color="primary" block type="submit" [disabled]="!form.valid">Complete Hire</button>
+        </div>
+
+      </ion-list>
+    </form>
+
+  </div>
+
+  <div align="center" *ngIf="hire.status == 1">
+    <button ion-button round outline
+            (click)="acceptHire(hire)"
+            color="secondary">Accept</button>
+  </div>
+  <div align="center" *ngIf="hire.status == 1">
+    <button ion-button round outline
+            (click)="rejectHire(hire)"
+            color="danger">Reject</button>
+  </div>
+
+  <h4 *ngIf="hire.finished">Hire Amount: Rs.{{hire.amount}}</h4>
+
+</ion-content>

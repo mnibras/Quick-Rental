@@ -51,6 +51,8 @@ import {UpdateUserProfile} from "../pages/update-user-profile/update-user-profil
 import {CustomFormsModule} from "ng2-validation";
 import {VehicleMoreOptionPage} from "../pages/vehicle-more-option-page/vehicle-more-option-page";
 import {DriverMoreOptionPage} from "../pages/driver-more-option-page/driver-more-option-page";
+import {AdminUpdateHireDetails} from "../pages/admin-update-hire-details/admin-update-hire-details";
+import {AdminHireInfo} from "../pages/admin-hire-info/admin-hire-info";
 
 
 
@@ -94,7 +96,9 @@ import {DriverMoreOptionPage} from "../pages/driver-more-option-page/driver-more
     AdminUpdateDriver,
     UpdateUserProfile,
     VehicleMoreOptionPage,
-    DriverMoreOptionPage
+    DriverMoreOptionPage,
+    AdminUpdateHireDetails,
+    AdminHireInfo
   ],
   imports: [
     HttpModule,
@@ -139,7 +143,9 @@ import {DriverMoreOptionPage} from "../pages/driver-more-option-page/driver-more
     AdminUpdateDriver,
     UpdateUserProfile,
     VehicleMoreOptionPage,
-    DriverMoreOptionPage
+    DriverMoreOptionPage,
+    AdminUpdateHireDetails,
+    AdminHireInfo
   ],
   providers: [
     StatusBar,
