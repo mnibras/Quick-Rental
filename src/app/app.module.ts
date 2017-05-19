@@ -53,6 +53,10 @@ import {VehicleMoreOptionPage} from "../pages/vehicle-more-option-page/vehicle-m
 import {DriverMoreOptionPage} from "../pages/driver-more-option-page/driver-more-option-page";
 import {AdminUpdateHireDetails} from "../pages/admin-update-hire-details/admin-update-hire-details";
 import {AdminHireInfo} from "../pages/admin-hire-info/admin-hire-info";
+import {HireMoreOptionPage} from "../pages/hire-more-option-page/hire-more-option-page";
+import {AdminRentInfo} from "../pages/admin-rent-info/admin-rent-info";
+import {RentMoreOptionPage} from "../pages/rent-more-option-page/rent-more-option-page";
+import {AdminRentService} from "../providers/admin-rent-service";
 
 
 
@@ -98,7 +102,10 @@ import {AdminHireInfo} from "../pages/admin-hire-info/admin-hire-info";
     VehicleMoreOptionPage,
     DriverMoreOptionPage,
     AdminUpdateHireDetails,
-    AdminHireInfo
+    AdminHireInfo,
+    HireMoreOptionPage,
+    AdminRentInfo,
+    RentMoreOptionPage
   ],
   imports: [
     HttpModule,
@@ -145,7 +152,10 @@ import {AdminHireInfo} from "../pages/admin-hire-info/admin-hire-info";
     VehicleMoreOptionPage,
     DriverMoreOptionPage,
     AdminUpdateHireDetails,
-    AdminHireInfo
+    AdminHireInfo,
+    HireMoreOptionPage,
+    AdminRentInfo,
+    RentMoreOptionPage
   ],
   providers: [
     StatusBar,
@@ -160,6 +170,7 @@ import {AdminHireInfo} from "../pages/admin-hire-info/admin-hire-info";
     AdminCarService,
     AdminDriverService,
     AdminHireService,
+    AdminRentService,
     LoginService,
     UserService,
     CustomerService

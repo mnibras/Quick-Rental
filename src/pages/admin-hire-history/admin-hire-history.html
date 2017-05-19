@@ -7,7 +7,12 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Hire History</ion-title>
+    <ion-title>{{pageTitle}}</ion-title>
+    <ion-buttons end >
+      <button ion-button icon-only (click)="onShowOptions($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -18,8 +23,10 @@
     <ion-item-sliding *ngFor="let hire of hireList">
       <ion-item (click)="viewHire(hire)">
         <p>{{hire.hireDate}} | {{hire.hireTime}}</p>
-        <p>from {{hire.location}} to {{hire.destination}} </p>
-        <ion-icon end name="checkmark-circle" md="md-checkmark-circle"></ion-icon>
+        <p *ngIf="hire.status == 1 && !hire.finished">Status : Pending</p>
+        <p *ngIf="hire.status == 2 && !hire.finished">Status : Accepted</p>
+        <p *ngIf="hire.status == 3 && !hire.finished">Status : Rejected</p>
+        <P color="danger" *ngIf="hire.finished">Status : Completed</P>
       </ion-item>
       <ion-item-divider>
         Item Divider

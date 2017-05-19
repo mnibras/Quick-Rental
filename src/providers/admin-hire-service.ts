@@ -38,6 +38,34 @@ export class AdminHireService {
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  getListOfPendingHireDetails():Observable<Hire[]>{
+    let url = `${SERVER_URL}/hire/pending`;
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Hire[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getListOfAcceptedHireDetails():Observable<Hire[]>{
+    let url = `${SERVER_URL}/hire/accepted`;
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Hire[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getListOfRejectedHireDetails():Observable<Hire[]>{
+    let url = `${SERVER_URL}/hire/rejected`;
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Hire[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getListOfCompletedHireDetails():Observable<Hire[]>{
+    let url = `${SERVER_URL}/hire/completed`;
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Hire[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   getHireDetails(id:number):Observable<Hire>{
     let url = `${SERVER_URL}/hire/${id}`;
     return this.authHttp.get(url)
@@ -71,6 +99,14 @@ export class AdminHireService {
   }
 
   acceptHireDetails(hire:Hire){
+    let body = JSON.stringify(hire);
+    let url = `${SERVER_URL}/hire/edit`;
+    return this.authHttp.put(url, body, this._options)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  rejectHireDetails(hire:Hire){
     let body = JSON.stringify(hire);
     let url = `${SERVER_URL}/hire/edit`;
     return this.authHttp.put(url, body, this._options)

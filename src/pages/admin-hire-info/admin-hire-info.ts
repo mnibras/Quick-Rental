@@ -7,6 +7,7 @@ import {AdminDriverService} from "../../providers/admin-driver-service";
 import {User} from "../../app/model/user";
 import {AdminHireService} from "../../providers/admin-hire-service";
 import {NgForm} from "@angular/forms";
+import {AdminHireHistory} from "../admin-hire-history/admin-hire-history";
 
 /**
  * Generated class for the AdminHireInfo page.
@@ -88,14 +89,21 @@ export class AdminHireInfo {
     this.adminHireService.acceptHireDetails(hire)
       .subscribe(
         (data:any) => {
-          this.navCtrl.pop();
+          this.navCtrl.popTo(AdminHireHistory);
           console.log(data);
         }
       );
   }
 
   rejectHire(hire:Hire){
-    console.log("Hire ID: "+ hire.id);
+    hire.status = 3;
+    this.adminHireService.rejectHireDetails(hire)
+      .subscribe(
+        (data:any) => {
+          this.navCtrl.popTo(AdminHireHistory);
+          console.log(data);
+        }
+      );
   }
 
   setSelectedDriver(driver:User){
@@ -112,11 +120,12 @@ export class AdminHireInfo {
 
   completeHire(form:NgForm){
     this.hire.finished = true;
+    this.hire.vehicle.currentMillage = this.hire.endMilage;
     this.hire.amount = this.hire.vehicle.hirePerMilage * (this.hire.endMilage - this.hire.startMilage);
     this.adminHireService.completeHireDetails(this.hire)
       .subscribe(
         (data:any) => {
-          this.navCtrl.pop();
+          this.navCtrl.popTo(AdminHireHistory);
           console.log(data);
         }
       );

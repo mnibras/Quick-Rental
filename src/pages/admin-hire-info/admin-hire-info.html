@@ -22,7 +22,7 @@
         <p color="danger" *ngIf="hire.status == 1">Status : Pending</p>
         <p color="danger" *ngIf="hire.status == 2">Status : Accepted</p>
         <P color="danger" *ngIf="hire.status == 3">Status : Rejected</P>
-        <p>{{hire.isFinished}}</p>
+        <P color="danger" *ngIf="hire.finished">Status : Completed</P>
         <p>Hire Date : {{hire.hireDate}}</p>
         <p>Hire Time : {{hire.hireTime}}</p>
         <p>From : {{hire.location}}</p>

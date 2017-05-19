@@ -1,0 +1,32 @@
+<ion-grid text-center>
+  <ion-row>
+    <ion-col>
+      <h3>Load Details</h3>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <button ion-button outline (click)="onAction('pending')">Pending Hires</button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <button ion-button outline (click)="onAction('accepted')">Accepted Hires</button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <button ion-button outline (click)="onAction('rejected')">Rejected Hires</button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <button ion-button outline (click)="onAction('completed')">Completed Hires</button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <button ion-button outline (click)="onAction('all')">All Hires</button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
