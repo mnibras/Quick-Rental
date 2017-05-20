@@ -30,19 +30,21 @@ export class UpdateUserProfile {
               private readonly authService: AuthService,
               private readonly jwtHelper: JwtHelper) {
 
+    this.user = new User();
+
     this.authService.authUser.subscribe(jwt => {
       if (jwt) {
         const decoded = this.jwtHelper.decodeToken(jwt);
         this.userFullname = decoded.sub;
         this.userRole = decoded.role;
         this.userId = decoded.userId;
+        this.getUserDetails();
       }
       else {
         this.user = null;
       }
     });
-    this.user = new User();
-    this.getUserDetails();
+
   }
 
   ionViewDidLoad() {
@@ -59,11 +61,9 @@ export class UpdateUserProfile {
   }
 
   getUserDetails(){
-    console.log("(2) this.userId : "+this.userId);
     this.userService.getUser(this.userId ).subscribe(
       data => {
         this.user = data;
-        console.log(JSON.stringify(data));
       },
       err => {
         console.log("Error : "+err);
@@ -72,8 +72,6 @@ export class UpdateUserProfile {
 
   submitToUpdateUser(form:NgForm){
     this.user.userRole = this.userRole;
-
-    console.log("submitToAddDriver : "+ JSON.stringify(this.user));
     this.userService.editUser(this.user)
       .subscribe(
         (data:any) => {

@@ -18,7 +18,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-css">
   <ion-list inset>
     <ion-item-sliding *ngFor="let hire of hireList">
       <ion-item (click)="viewHire(hire)">
@@ -35,10 +35,6 @@
         <button ion-button color="primary" (click)="viewHire(hire)">
           <ion-icon name="eye"></ion-icon>
           View
-        </button>
-        <button ion-button color="secondary" (click)="updateHire(hire)">
-          <ion-icon name="open"></ion-icon>
-          Edit
         </button>
       </ion-item-options>
       <ion-item-options side="right">

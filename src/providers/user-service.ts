@@ -29,6 +29,7 @@ export class UserService {
   }
 
   getUser(id:number): Observable<User> {
+
     let url = `${SERVER_URL}/user/get/${id}`;
     return this.authHttp.get(url,this._options)
       .map(res => <User>(res.json()))

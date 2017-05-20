@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AdminRentDetails} from "../admin-rent-details/admin-rent-details";
-import {AdminNotifications} from "../admin-notifications/admin-notifications";
 import {AdminHireDetails} from "../admin-hire-details/admin-hire-details";
 import {AdminAvailableCars} from "../admin-available-cars/admin-available-cars";
 import {AdminAvailableDrivers} from "../admin-available-drivers/admin-available-drivers";
@@ -77,8 +76,6 @@ export class AdminDashboard {
     this.navCtrl.push(AdminHireDetails);
   }
 
-  showNotificationPage(){
-    this.navCtrl.push(AdminNotifications);
-  }
+
 
 }

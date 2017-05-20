@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="secondary">
     <ion-buttons start>
       <button ion-button icon-only menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -18,7 +18,8 @@
 </ion-header>
 
 
-<ion-content padding>
+
+<ion-content padding text-center class="login" scroll="false">
   <div>
     <form (ngSubmit)="onSubmitLogin(form.value)" #form="ngForm">
       <ion-list>
@@ -40,13 +41,15 @@
           Password is required
         </ion-item>
 
-        <div padding>
-          <button ion-button color="primary" block type="submit" [disabled]="!form.valid">Login</button>
-        </div>
+          <div padding>
+            <button  ion-button  color="positive" fab-center
+                     type="submit" [disabled]="!form.valid">Login</button>
+          </div>
+          <div padding>
+            <button ion-button  color="danger" fab-center
+                    type="button" (click)="onLoadSignUp()">Sign up</button>
+          </div>
 
-        <div padding>
-          <button ion-button color="secondary" block type="button" (click)="onLoadSignUp()">Sign up</button>
-        </div>
       </ion-list>
     </form>
   </div>

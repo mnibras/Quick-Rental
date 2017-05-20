@@ -5,8 +5,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import {Hire} from "../app/model/hire";
-import {SERVER_URL} from "../config";
 import {AuthHttp} from "angular2-jwt";
+import {SERVER_URL} from "../config";
 
 /*
   Generated class for the AdminHireService provider.

@@ -9,9 +9,6 @@
   <ion-navbar color="primary">
     <ion-title text-center medium >{{pageTitle}}</ion-title>
     <ion-buttons end >
-      <button ion-button icon-only (click)="loadAddDriverPage()">
-        <ion-icon name="add"></ion-icon>
-      </button>
       <button ion-button icon-only (click)="onShowOptions($event)">
         <ion-icon name="more"></ion-icon>
       </button>
@@ -21,7 +18,12 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-css">
+
+  <ion-fab top right edge>
+    <button ion-fab mini color="danger" (click)="loadAddDriverPage()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
     <ion-list>
       <ion-item-sliding *ngFor="let driver of driverList">
         <ion-item (click)="viewDriver(driver)">

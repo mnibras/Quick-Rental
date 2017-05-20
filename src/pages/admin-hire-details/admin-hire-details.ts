@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AdminAvailableDrivers} from "../admin-available-drivers/admin-available-drivers";
 import {AdminAvailableCars} from "../admin-available-cars/admin-available-cars";
 import {AdminHireHistory} from "../admin-hire-history/admin-hire-history";
-import {AdminHireNotification} from "../admin-hire-notification/admin-hire-notification";
 
 /**
  * Generated class for the AdminHireDetails page.
@@ -37,8 +36,5 @@ export class AdminHireDetails {
     this.navCtrl.push(AdminHireHistory);
   }
 
-  showHireNotificationPage(){
-    this.navCtrl.push(AdminHireNotification);
-  }
 
 }

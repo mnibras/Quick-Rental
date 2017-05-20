@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AdminAvailableCars} from "../admin-available-cars/admin-available-cars";
-import {AdminRentNotification} from "../admin-rent-notification/admin-rent-notification";
 import {AdminRentHistory} from "../admin-rent-history/admin-rent-history";
 
 /**
@@ -32,9 +31,7 @@ export class AdminRentDetails {
     this.navCtrl.push(AdminAvailableCars);
   }
 
-  showRentNotificationPage(){
-    this.navCtrl.push(AdminRentNotification);
-  }
+
 
 
 }
