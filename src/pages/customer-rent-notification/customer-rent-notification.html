@@ -14,20 +14,22 @@
 
 
 <ion-content padding>
-  <div>
-    <ion-list>
-      <ion-item>
-        <ion-label>Payment Details</ion-label>
-        <br><br><br>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Car Details</ion-label>
-        <br><br><br>
+  <div *ngIf="rentList">
+   <ion-list>
+      <ion-item *ngFor="let rent of rentList">
+          <p>{{rent.startDate}}</p>
+          <p>{{rent.startTime}}</p>
+          <p *ngIf="rent.status==1"><span style="color:blue;font-weight:bold">Pending</span></p>
+          <p *ngIf="rent.status==2"><span style="color:green;font-weight:bold">Accepted</span></p>
+          <p *ngIf="rent.status==3"><span style="color:red;font-weight:bold">Rejected</span></p>
+          <p *ngIf="rent.description">{{rent.description}}</p>
+          <button ion-button clear item-right (click)="viewRent(rent.id)">View</button>
       </ion-item>
     </ion-list>
+  
 
-    <button ion-item (click)="rentNotificationClose()"></button>
+
+    <button ion-item (click)="backToDashboard()"></button>
   </div>
 
 </ion-content>

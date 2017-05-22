@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-css">
   <form #form="ngForm" (ngSubmit)="submitHireDetails(form.value)">
         <ion-list>
           <ion-item>
@@ -25,15 +25,15 @@
           </ion-item>
 
           <ion-item>
-            <ion-datetime placeholder="Travel Date" [(ngModel)]=hireDate name="hireDate" displayFormat="MM/DD/YYYY"></ion-datetime>
+            <ion-datetime placeholder="Travel Date" [(ngModel)]=hireDate name="hireDate" displayFormat="MM/DD/YYYY" required></ion-datetime>
           </ion-item>
 
           <ion-item>
-            <ion-datetime placeholder="Travel Time" [(ngModel)]=hireTime name="hireTime" displayFormat="hh:mm:A"></ion-datetime>
+            <ion-datetime placeholder="Travel Time" [(ngModel)]=hireTime name="hireTime" displayFormat="hh:mm:A" required></ion-datetime>
           </ion-item>
           
           <ion-item>
-              <ion-select placeholder="No of Seats" [(ngModel)]=bookingSeats name="bookingSeats" multiple="true">
+              <ion-select placeholder="No of Seats" [(ngModel)]=bookingSeats name="bookingSeats" multiple="true" required>
                 <ion-option>1</ion-option>
                 <ion-option>2</ion-option>
                 <ion-option>3</ion-option>
@@ -44,10 +44,14 @@
           </ion-item>
 
           <ion-item>
-            <button ion-button round type="submit">Continue</button>
+            <button ion-button block type="submit">Continue</button>
           </ion-item>
 
         </ion-list>
       </form>
+
+      <ion-item>
+            <button ion-button round (click)="cancelHireRequet()">Cancel</button>
+      </ion-item>
 
 </ion-content>

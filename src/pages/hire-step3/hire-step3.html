@@ -12,7 +12,7 @@
 
 </ion-header>
   
-<ion-content padding>
+<ion-content padding class="background-css">
   <div>
     <form #form="ngForm" (ngSubmit)="confirmHireCar(form.value)"> 
       <ion-list>
@@ -21,19 +21,14 @@
         </ion-item>
 
         <ion-item>
-          <ion-label>We have gathered your details for book the car. Click the request button bellow to confirm,
-            or click the cancel button to cancel the request.</ion-label>
+            <button ion-button block type="submit">Confirm</button>
         </ion-item>
 
-        <ion-item>
-            <button ion-button round type="submit">Confirm</button>
-        </ion-item>
-
-        <ion-item>
-            <button ion-button round (click)="cancelHireRequet()">Cancele</button>
-        </ion-item>
       </ion-list>
     </form>
+    <ion-item>
+            <button ion-button round (click)="cancelHireRequet()">Cancel</button>
+    </ion-item>
   </div>
 
 </ion-content>

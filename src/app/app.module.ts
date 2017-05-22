@@ -17,8 +17,9 @@ import {HireStep1} from "../pages/hire-step1/hire-step1";
 import {HireStep2} from "../pages/hire-step2/hire-step2";
 import {HireStep3} from "../pages/hire-step3/hire-step3";
 import {RentStep1} from "../pages/rent-step1/rent-step1";
-import {RentStep2} from "../pages/rent-step2/rent-step2";
 import {RentStep3} from "../pages/rent-step3/rent-step3";
+import {ViewHire} from "../pages/view-hire/view-hire";
+import {ViewRent} from "../pages/view-rent/view-rent";
 import {CustomerHireNotification} from "../pages/customer-hire-notification/customer-hire-notification";
 import {CustomerRentNotification} from "../pages/customer-rent-notification/customer-rent-notification";
 import {CustomerNotifications} from "../pages/customer-notifications/customer-notifications";
@@ -37,6 +38,7 @@ import {AdminRentHistory} from "../pages/admin-rent-history/admin-rent-history";
 import {AdminCarService} from "../providers/admin-car-service";
 import {AdminDriverService} from "../providers/admin-driver-service";
 import {AdminHireService} from "../providers/admin-hire-service";
+import {AdminRentService} from "../providers/admin-rent-service";
 import {LoginService} from "../providers/login-service";
 import {UserService} from "../providers/user-service";
 import {AdminVehicle} from "../pages/admin-vehicle/admin-vehicle";
@@ -57,7 +59,6 @@ import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-drive
     HireStep2,
     HireStep3,
     RentStep1,
-    RentStep2,
     RentStep3,
     AdminAddDriver,
     AdminAddCar,
@@ -76,7 +77,9 @@ import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-drive
     AdminVehicle,
     AdminUpdateCar,
     AdminDriver,
-    AdminUpdateDriver
+    AdminUpdateDriver,
+    ViewHire,
+    ViewRent
   ],
   imports: [
     HttpModule,
@@ -94,7 +97,6 @@ import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-drive
     HireStep2,
     HireStep3,
     RentStep1,
-    RentStep2,
     RentStep3,
     AdminAddDriver,
     AdminAddCar,
@@ -113,7 +115,9 @@ import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-drive
     AdminVehicle,
     AdminUpdateCar,
     AdminDriver,
-    AdminUpdateDriver
+    AdminUpdateDriver,
+    ViewHire,
+    ViewRent
   ],
   providers: [
     StatusBar,
@@ -122,6 +126,7 @@ import {AdminUpdateDriver} from "../pages/admin-update-driver/admin-update-drive
     AdminCarService,
     AdminDriverService,
     AdminHireService,
+    AdminRentService,
     LoginService,
     UserService,
     CustomerService

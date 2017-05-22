@@ -15,39 +15,52 @@ import {Rent} from "../app/model/rent";
 @Injectable()
 export class AdminRentService {
    private baseURL:string = '';
+   private _headers: Headers;
+   private _options: RequestOptions;
 
   constructor(public http: Http) {
     console.log('Hello AdminRentService Provider');
-    this.baseURL = 'http://localhost:8080/';
+    this.baseURL = 'http://localhost:8080/rest';
+
+    this._headers = new Headers({ 'Content-Type': 'application/json' ,
+      "Authorization": "Basic " + btoa('username:password'),
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Origin': '*'});
+    this._options = new RequestOptions({ headers: this._headers }); 
   }
 
   getListOfRentDetails():Observable<Rent[]>{
-    let url = `${this.baseURL}rent`;
-    return this.http.get(url)
+    let url = `${this.baseURL}/rent`;
+    return this.http.get(url,this._options)
+                    .map((res:Response) => <Rent[]>(res.json()))
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getRentDetailsByUser(customerId: number):Observable<Rent[]>{
+    let url = `${this.baseURL}/rent/rentsByUser/${customerId}`;
+    
+    return this.http.get(url,this._options)
                     .map((res:Response) => <Rent[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getRentDetails(id: number):Observable<Rent>{
-    let url = `${this.baseURL}rent/${id}`;
-    return this.http.get(url)
+    let url = `${this.baseURL}/rent/${id}`;
+    console.log('url : '+url);
+    return this.http.get(url,this._options)
                     .map(res => <Rent>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  addRentDetails(rent:Rent):Observable<Rent[]>{
+  addRentDetails(rent:Rent, customerId:number, vehicleId: number):Observable<Rent>{
     let bodyString = JSON.stringify(rent);
     //let headers = new Headers({ 'Content-Type': 'application/json' });
-    let headers = new Headers({ 'Accept': 'application/json' ,
-        "Authorization": "Basic " + btoa('username:password'),
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Origin': '*'});
-    let options = new RequestOptions({ headers: headers });
+    
 
-    let url = `${this.baseURL}rent/add/`;
+    let url = `${this.baseURL}/rent/add/${customerId}/${vehicleId}`;
 
-    return this.http.post(url, bodyString, options)
+    return this.http.post(url, bodyString, this._options)
                       .map((res:Response) => res.json())
                       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
@@ -60,18 +73,20 @@ export class AdminRentService {
 
     let options = new RequestOptions({ headers: headers });
 
-    let url = `${this.baseURL}rent/edit`;
+    let url = `${this.baseURL}/rent/edit`;
 
     return this.http.put(`${url}/${rent.id}`, bodyString, options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  removeDetails(rent:Rent):Observable<Rent[]>{
-    let url = `${this.baseURL}rent/delete`;
-    return this.http.delete(`${url}/${rent.id}`)
-                        .map((res:Response) => res.json())
-                        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  removeRentDetails(id:number):Observable<string>{
+    let url = `${this.baseURL}/rent/delete/${id}`;
+    return this.http.delete(url,this._options)
+                          .map((res:Response) => res.json())
+                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+                        
   }
 
 }

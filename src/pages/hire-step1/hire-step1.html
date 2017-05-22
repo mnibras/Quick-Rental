@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-css">
     <div>
       <form #formData="ngForm" (ngSubmit)="submitHireLocation(formData.value)">
         <ion-list>
@@ -28,9 +28,12 @@
           <ion-item>
             <button ion-button block type="submit" [disabled] = "!formData.valid" >Continue</button>
           </ion-item>
-
+          
         </ion-list>
       </form>
+      <ion-item>
+            <button ion-button round (click)="cancelHireRequet()">Cancel</button>
+      </ion-item>
     </div>
 
 </ion-content>

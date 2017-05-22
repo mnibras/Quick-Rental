@@ -16,8 +16,8 @@ import {CustomerRentNotification} from '../customer-rent-notification/customer-r
 })
 export class CustomerNotifications {
 
-  tab1Root = CustomerHireNotification;
-  tab2Root = CustomerRentNotification;
+  hireNotification = CustomerHireNotification;
+  rentNotification = CustomerRentNotification;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

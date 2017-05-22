@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { CustomerHireNotification } from '../customer-hire-notification/customer-hire-notification';
-import { AlertController } from 'ionic-angular';
 import { AdminHireService } from '../../providers/admin-hire-service';
 import { CustomerService } from '../../providers/customer-service';
 import { User } from '../../app/model/user'
@@ -23,7 +21,6 @@ export class HireStep3 {
   public description: String;
   public customerId: number;
   public customer: User;
-
 
   hire = {
     id: 0,
@@ -49,6 +46,7 @@ export class HireStep3 {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
               private adminHireService: AdminHireService,
               private customerService: CustomerService) {
 
@@ -60,52 +58,41 @@ export class HireStep3 {
   }
 
   confirmHireCar(formData){
+    let loading = this.loadingCtrl.create({
+      content: 'Requesting Hire Vehicle...'
+    });
+
+    loading.present();
     this.hire.description = formData.description;
 
     this.customerId = 100;
-    this.getCustomer(this.customerId);
-    this.hire.customer = this.customer;
-
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-    console.log(this.hire.customer);
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     
-
-    this.adminHireService.addHireDetails(this.hire)
+    this.adminHireService.addHireDetails(this.hire, this.customerId)
                           .subscribe(
-                              (response:any) => console.log(response)
-                          );
-                     
-    this.showAlert();
-    this.navCtrl.push(CustomerHireNotification);
+                              response =>{
+                                  loading.dismiss();
+                                  this.showAlert();
+                                  console.log(JSON.stringify(response));
+                                  this.navCtrl.push(HomePage);
+                              });
+
+   
   }
-
-
-  getCustomer(id: number){
-    this.customerService.getCustomer(id).subscribe(
-                                data => {
-                                    this.customer = data;
-                                    console.log(JSON.stringify(data));
-                                },
-                                err => {
-                                    console.log("Error : "+err);
-                                });
-  }
-
 
 
   showAlert() {
     
     let alert = this.alertCtrl.create({
-      title: 'Hire Car Confirmed',
-      subTitle: 'Your request is confirmed, Thank you! ',
+      title: 'Hire Car requested',
+      subTitle: 'Your request is processing, Notification will reciewed when confirmed ',
       buttons: ['OK']
     });
     alert.present();
   }
 
+
   cancelHireRequet(){
-    this.navCtrl.push(HomePage);
+    this.navCtrl.popTo(HomePage);
   }
 
 }

@@ -12,13 +12,13 @@ export class Rent {
   advanceAmount:number;
   amount:number;
   description:string;
-  isFinished:boolean;
+  isFinished:number;
   status:number;
 
   customer:User;
   vehicle:Vehicle;
 
-  Rent(){
+  /*Rent(){
     this.id = 0;
     this.startDate = "";
     this.startTime = "";
@@ -29,11 +29,12 @@ export class Rent {
     this.advanceAmount= 0;
     this.amount = 0;
     this.description = "";
-    this.isFinished = false;
+    this.isFinished = 0;
     this.status = 0;
     this.customer = null;
     this.vehicle = null;
 
   }
+  */
 
 }

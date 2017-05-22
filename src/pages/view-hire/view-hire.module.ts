@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
-import { RentStep2 } from './rent-step2';
+import { ViewHire } from './view-hire';
 
 @NgModule({
   declarations: [
-    RentStep2,
+    ViewHire,
   ],
   imports: [
- //   IonicModule.forChild(RentStep2),
+  //  IonicModule.forChild(ViewHire),
   ],
   exports: [
-    RentStep2
+    ViewHire
   ]
 })
-export class RentStep2Module {}
+export class ViewHireModule {}

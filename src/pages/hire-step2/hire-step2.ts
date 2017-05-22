@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import {HireStep3} from '../hire-step3/hire-step3'
+import { HomePage } from '../home/home';
 
 
 /**
@@ -38,7 +39,9 @@ export class HireStep2 {
   
   }
 
-  constructor(public navCtrl: NavController, public params: NavParams) {
+  constructor(public navCtrl: NavController,
+              public params: NavParams,
+              public loadingCtrl: LoadingController) {
     this.hire.location = params.get('location');
     this.hire.destination = params.get('destination');
     
@@ -57,9 +60,16 @@ export class HireStep2 {
     var bookingSeatsArray = formData.bookingSeats;
     this.hire.bookingSeats = bookingSeatsArray[0];
     
+    //this.presentLoadingDefault();
+
     this.navCtrl.push(HireStep3,{
       hire: this.hire
     });
   }
+
+  cancelHireRequet(){
+    this.navCtrl.popTo(HomePage);
+  }
+
 
 }

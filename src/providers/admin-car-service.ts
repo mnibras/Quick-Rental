@@ -41,6 +41,14 @@ export class AdminCarService {
 
   }
 
+  getAvailableVehicles():Observable<Vehicle[]>{
+    let url = `${this.baseURL}/vehicle/getAvailableVehicles/true`;
+    return this.http.get(url)
+                    .map(res => <Vehicle>(res.json()))
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
+
   getVehiclesList(): Observable<Vehicle[]>{
     let url = `${this.baseURL}/vehicle`;
 
@@ -61,6 +69,15 @@ export class AdminCarService {
     return this.http.post(url, body,this._options)
                       .map((res:Response) => res.json());
   }
+
+  /*
+  pickRentVehicle(id: number):Observable<Vehicle>{
+    let url = `${this.baseURL}/vehicle/pickRentVehicle/${id}`; 
+
+    return this.http.get(url,this._options)
+                    .map((res:Response) => res.json());
+  }
+  */
 
   editVehicle(vehicle: Vehicle): Observable<Vehicle>{
     console.log("editVehicle : "+ JSON.stringify(vehicle));

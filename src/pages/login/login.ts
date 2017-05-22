@@ -36,7 +36,7 @@ export class Login {
     console.log('ionViewDidLoad Login');
 
 
-  }
+  } 
 
   onSubmitLogin(formData){
         this.navCtrl.push(HomePage);

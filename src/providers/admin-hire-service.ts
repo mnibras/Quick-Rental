@@ -16,40 +16,51 @@ import {Hire} from "../app/model/hire";
 export class AdminHireService {
 
   private baseURL:string = '';
+  private _headers: Headers;
+  private _options: RequestOptions;
 
   constructor(public http: Http) {
     console.log('Hello AdminDriverService Provider');
-    this.baseURL = 'http://localhost:8080/rest';  
+    this.baseURL = 'http://localhost:8080/rest'; 
+
+    this._headers = new Headers({ 'Content-Type': 'application/json' ,
+      "Authorization": "Basic " + btoa('username:password'),
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Origin': '*'});
+    this._options = new RequestOptions({ headers: this._headers }); 
   }
 
 
   getListOfHireDetails():Observable<Hire[]>{
     let url = `${this.baseURL}/hire`;
-    return this.http.get(url)
+    return this.http.get(url,this._options)
                     .map((res:Response) => <Hire[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getHireDetails(id:number):Observable<Hire>{
     let url = `${this.baseURL}/hire/${id}`;
-    return this.http.get(url)
+    console.log('service fdbfghgjhjhjgjjhj');
+    console.log('url: '+url);
+    return this.http.get(url,this._options)
                     .map(res => <Hire>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  getHireDetailsByUser(customerId: number):Observable<Hire[]>{
+    let url = `${this.baseURL}/hire//hireByUser/${customerId}`;
+    return this.http.get(url,this._options)
+                    .map((res:Response) => <Hire[]>(res.json()))
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
-  addHireDetails(hire:Hire):Observable<Hire[]>{
+
+  addHireDetails(hire:Hire, customerId: number):Observable<Hire[]>{
     let bodyString = JSON.stringify(hire);
-    let headers = new Headers({ 'Content-Type': 'application/json' ,
-      "Authorization": "Basic " + btoa('username:password'),
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'POST',
-      'Access-Control-Allow-Origin': '*'});
 
-    let options = new RequestOptions({ headers: headers });
-
-    let url = `${this.baseURL}/hire/add/`;
-    return this.http.post(url, hire, options)
+    let url = `${this.baseURL}/hire/add/${customerId}`;
+    return this.http.post(url, hire, this._options)
                       .map((res:Response) => res.json()) 
                       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
@@ -58,23 +69,21 @@ export class AdminHireService {
 
   editHireDetails(hire:Hire):Observable<Hire[]>{
     let bodyString = JSON.stringify(hire);
-    let headers = new Headers({ 'Content-Type': 'application/json' }); 
-    let options = new RequestOptions({ headers: headers });
 
-    let url = `${this.baseURL}/driver/edit`;
+    let url = `${this.baseURL}/hire//edit`;
 
     console.log(hire);
 
-    return this.http.put(`${url}/${hire.id}`, hire, options) 
+    return this.http.put(`${url}/${hire.id}`, hire, this._options) 
                          .map((res:Response) => res.json()) 
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
   }
 
-  removeHireDetails(hire:Hire):Observable<Hire[]>{
-    let url = `${this.baseURL}/driver/delete`;
-    return this.http.delete(`${url}/${hire.id}`) 
-                        .map((res:Response) => res.json()) 
-                        .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
+  removeHireDetails(id:number):Observable<string>{
+    let url = `${this.baseURL}/hire/delete/${id}`;
+    return this.http.delete(url,this._options)
+                         .map((res:Response) => res.json())
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }

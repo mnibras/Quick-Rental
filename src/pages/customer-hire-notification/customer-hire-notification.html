@@ -14,18 +14,22 @@
 
 
 <ion-content padding>
-  <div>
+  <div *ngIf="hireList">
     <ion-list>
       <ion-item *ngFor="let hire of hireList">
-          <p>{{hire.destination}}<p>
+          <p>{{hire.destination}}</p>
           <p>{{hire.hireDate}}</p>
           <p>{{hire.hireTime}}</p>
+          <p *ngIf="hire.status==1"><span style="color:blue;font-weight:bold">Pending</span></p>
+          <p *ngIf="hire.status==2"><span style="color:green;font-weight:bold">Accepted</span></p>
+          <p *ngIf="hire.status==3"><span style="color:red;font-weight:bold">Rejected</span></p>         
           <p *ngIf="hire.description">{{hire.description}}</p>
+          <button ion-button clear item-right (click)="viewHire(hire.id)">View</button>
       </ion-item>
     </ion-list>
   
 
-    <button ion-item (click)="hireNotificationClose()"></button>
+    <button ion-item (click)="backToDashboard()"></button>
   </div>
 
 </ion-content>

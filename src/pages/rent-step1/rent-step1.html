@@ -7,23 +7,25 @@
 <ion-header>
 
  <ion-navbar color="primary">
-    <ion-title align="center">Chose a car for Rent</ion-title>
+    <ion-title align="center">Chose a Vehicle for Rent</ion-title>
   </ion-navbar>
 
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-css">
     <div>
       <ion-list>
-        <ion-item *ngFor="let vehicle of vehicles">
+        <ion-item *ngFor="let vehicle of availableVehicles; let i = index">
           <ion-thumbnail>
-            <img src="">
+            <img src="https://cache4.pakwheels.com/system/car_generation_pictures/4160/original/side_view.jpg?1452751288">
           </ion-thumbnail>
-          <h3>{{vehicle.modelName}}</h3>
-          <p>{{vehicle.amount}}</p>
-          <button ion-button clear (click)="viewVehicle(vehicle.id)">Pick This Vehicle</button>
+          <h3>Vehicle Model : {{vehicle.modelName}}</h3>
+          <p>Vehicle No : {{vehicle.vehicleNo}}</p>
+          <p>No.Of Seats : {{vehicle.noOfSeats}}</p>
+          <p>Rent per day : {{vehicle.rentPerDay}}</p>
+          <button ion-button clear (click)="pickVehicle(vehicle.id)">Pick This Vehicle</button>
         </ion-item>
       </ion-list>
     </div>

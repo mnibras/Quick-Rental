@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {HireStep2} from '../hire-step2/hire-step2'
+import { HomePage } from '../home/home';
 
 
 /**
@@ -18,7 +19,8 @@ import {HireStep2} from '../hire-step2/hire-step2'
 export class HireStep1 {
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,) {
 
   }
 
@@ -34,5 +36,11 @@ export class HireStep1 {
       });
       
   }
+
+  cancelHireRequet(){
+    this.navCtrl.popTo(HomePage);
+  }
+
+  
 
 }

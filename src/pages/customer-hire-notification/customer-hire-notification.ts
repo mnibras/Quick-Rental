@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { ViewHire } from '../view-hire/view-hire';
 import { AdminHireService } from '../../providers/admin-hire-service';
 import { Hire } from "../../app/model/hire";
 
@@ -18,18 +19,27 @@ import { Hire } from "../../app/model/hire";
 export class CustomerHireNotification {
 
   public hireList: Hire[];
+  public customerId = 100;
 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public loadingCtrl: LoadingController,
               public adminHireService: AdminHireService) {
             
   }
 
   ngOnInit(){
-    this.adminHireService.getListOfHireDetails()
+   let loading = this.loadingCtrl.create({
+      content: 'Loading Notifications...'
+    });
+
+    loading.present();
+
+    this.adminHireService.getHireDetailsByUser(this.customerId)
                          .subscribe(
                                 response =>{
+                                  loading.dismiss();
                                   this.hireList = response;
                                   console.log(JSON.stringify(response));
                                 },
@@ -39,12 +49,22 @@ export class CustomerHireNotification {
   }
 
 
+  viewHire(id: number){
+    this.navCtrl.push(ViewHire,{
+      hireId: id
+    })
+  }
+
+
+ 
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomerHireNotification');
   }
 
   hireNotificationClose(){
-    this.navCtrl.push(HomePage);
+    this.navCtrl.popTo(HomePage);
   }
 
 }
