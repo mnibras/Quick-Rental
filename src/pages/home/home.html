@@ -1,16 +1,25 @@
 <ion-header>
   <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
       Home Page
     </ion-title>
-    <button ion-button block (click)="logoutUser()">
-          <ion-icon name="person"></ion-icon>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
       </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding class="background-css">
-  <div padding>
+  Welcome <strong>{{username}}</strong>
+  <div>
     <button ion-button block (click)="loadHirePage()">For Hire</button>
   </div>
   <h4 align="center">- or -</h4>

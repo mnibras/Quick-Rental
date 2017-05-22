@@ -7,16 +7,22 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Available Vehicle</ion-title>
-    <ion-buttons end (click)="loadAddVehiclePage()">
-      <button><ion-icon name="add"></ion-icon></button>
+    <ion-title>{{pageTitle}}</ion-title>
+    <ion-buttons end >
+      <button ion-button icon-only (click)="onShowOptions($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
     </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-css">
+  <ion-fab top right edge>
+    <button ion-fab mini color="danger" (click)="loadAddVehiclePage()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
   <ion-list>
     <ion-item-sliding *ngFor="let vehicle of vehiclesList">
       <ion-item (click)="viewVehicle(vehicle)">
@@ -44,4 +50,6 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  <br>
+  <h6 text-center *ngIf="isVehicleListEmpty">No any vehicle exist..!</h6>
 </ion-content>

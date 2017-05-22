@@ -7,16 +7,23 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Available Drivers</ion-title>
-    <ion-buttons end (click)="loadAddDriverPage()">
-      <button><ion-icon name="add"></ion-icon></button>
+    <ion-title text-center medium >{{pageTitle}}</ion-title>
+    <ion-buttons end >
+      <button ion-button icon-only (click)="onShowOptions($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-css">
+
+  <ion-fab top right edge>
+    <button ion-fab mini color="danger" (click)="loadAddDriverPage()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
     <ion-list>
       <ion-item-sliding *ngFor="let driver of driverList">
         <ion-item (click)="viewDriver(driver)">
@@ -43,4 +50,6 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
+    <br>
+    <h6 text-center *ngIf="isDriverListEmpty">No any drivers exist..!</h6>
 </ion-content>

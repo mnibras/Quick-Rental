@@ -17,7 +17,7 @@ import { User } from '../../app/model/user'
   templateUrl: 'hire-step3.html',
 })
 export class HireStep3 {
-  
+
   public description: String;
   public customerId: number;
   public customer: User;
@@ -31,7 +31,7 @@ export class HireStep3 {
     endMilage: 0,
     hireDate: '',
     hireTime: '',
-    isFinished:0,
+    finished:false,
     location: '',
     startMilage: 0,
     status:1,
@@ -39,8 +39,8 @@ export class HireStep3 {
     customer: null,
     driver: null,
     vehicle: null,
-    
-  
+
+
   }
 
   constructor(public navCtrl: NavController,
@@ -66,6 +66,7 @@ export class HireStep3 {
     this.hire.description = formData.description;
 
     this.customerId = 100;
+
     
     this.adminHireService.addHireDetails(this.hire, this.customerId)
                           .subscribe(
@@ -76,12 +77,12 @@ export class HireStep3 {
                                   this.navCtrl.push(HomePage);
                               });
 
-   
+  
   }
 
 
   showAlert() {
-    
+
     let alert = this.alertCtrl.create({
       title: 'Hire Car requested',
       subTitle: 'Your request is processing, Notification will reciewed when confirmed ',

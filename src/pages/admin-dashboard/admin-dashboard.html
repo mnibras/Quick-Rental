@@ -7,46 +7,51 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title align="center">Admin Dashboard</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Admin Dashboard
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-css">
 
-  <ion-card>
-    <ion-card-header>
-      Manage Admin Panel
-    </ion-card-header>
+  <ion-item-group>
+    <ion-item-divider color="dark">
+      <h5>
+        Welcome <strong>{{user}}</strong>
+      </h5>
+    </ion-item-divider>
+    <button ion-item (click)="showCarDetailsPage()">
+      <ion-icon name="add-circle" item-left></ion-icon>
+      <p item-left>Vehicle Details</p>
+    </button>
+    <button ion-item (click)="showDriverDetailsPage()">
+      <ion-icon name="person" item-left></ion-icon>
+      <p item-left>Driver Details</p>
+    </button>
+    <button ion-item (click)="showRentDetailsPage()">
+      <ion-icon name="car" item-left></ion-icon>
+      <p item-left>Rent Details</p>
+    </button>
 
-    <ion-list>
-      <button ion-item (click)="showCarDetailsPage()">
-        <ion-icon name="add-circle" item-left></ion-icon>
-        <p item-left>Car Details</p>
-      </button>
+    <button ion-item (click)="showHireDetailsPage()">
+      <ion-icon name="people" item-left></ion-icon>
+      <p item-left>Hire Details</p>
+    </button>
+  </ion-item-group>
 
-      <button ion-item (click)="showDriverDetailsPage()">
-        <ion-icon name="person-add" item-left></ion-icon>
-        <p item-left>Driver Details</p>
-      </button>
 
-      <button ion-item (click)="showRentDetailsPage()">
-        <ion-icon name="car" item-left></ion-icon>
-        <p item-left>Rent Details</p>
-      </button>
-
-      <button ion-item (click)="showHireDetailsPage()">
-        <ion-icon name="people" item-left></ion-icon>
-        <p item-left>Hire Details</p>
-      </button>
-
-      <button ion-item (click)="showNotificationPage()">
-        <ion-icon name="notifications" item-left></ion-icon>
-        <p item-left>Notification</p>
-      </button>
-
-    </ion-list>
-  </ion-card>
 
 </ion-content>

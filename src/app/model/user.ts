@@ -3,12 +3,15 @@ export class User {
   fullname: string;
   email: string;
   password: string;
+  confirmPassword: string;
   address: string;
   phone: number;
   nic: string;
+  username: string;
   userRole: number;
   licenseNo: string;
   available:boolean;
+  jwtToken:string;
 
 
   User(){
@@ -16,12 +19,15 @@ export class User {
     this.fullname = "";
     this.email = "";
     this.password = "";
+    this.confirmPassword = "";
     this.address = "";
     this.phone = 0;
     this.nic = "";
+    this.username = "";
     this.userRole = 0;
     this.licenseNo = "";
     this.available = false;
+    this.jwtToken = "";
 
   }
 

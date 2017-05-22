@@ -15,6 +15,7 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+
 .bg-color {
   background-color: #f6faff;
 }
@@ -25,14 +26,20 @@
 }
 
 .background-css {
-  background: linear-gradient(rgba(23, 22, 22, 0.4), rgba(23, 22, 22, 0.4)), url('../assets/img/grey-car-background.jpeg');
+
+
+  background: linear-gradient(rgba(23, 22, 22, 0.4), rgba(23, 22, 22, 0.4)), url('../assets/img/login1.jpg');
+
   background-size: cover;
   h1 {
     margin-top: 80px !important;
   }
+
   ion-input [type="text"],
   ion-input [type="password"],
   ion-input [type="email"],
+
+
   ion-input,
   .text-input {
     background: transparent;
@@ -63,4 +70,7 @@
       }
     }
   }
+
 }
+
+

@@ -5,6 +5,8 @@ import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 
 import {User} from "../app/model/user";
+import {SERVER_URL} from "../config";
+import {AuthHttp} from "angular2-jwt";
 
 /*
   Generated class for the AdminDriverService provider.
@@ -15,13 +17,11 @@ import {User} from "../app/model/user";
 @Injectable()
 export class AdminDriverService {
 
-  private baseURL:string = '';
   private _headers: Headers;
   private _options: RequestOptions;
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private authHttp: AuthHttp) {
     console.log('Hello AdminDriverService Provider');
-    this.baseURL = 'http://localhost:8080/rest';
     this._headers = new Headers({ 'Content-Type': 'application/json' ,
       "Authorization": "Basic " + btoa('username:password'),
       'Access-Control-Allow-Headers': 'Content-Type',
@@ -31,15 +31,27 @@ export class AdminDriverService {
   }
 
   getDriver(id:number):Observable<User>{
-    let url = `${this.baseURL}/driver/${id}`;
-    return this.http.get(url)
+    let url = `${SERVER_URL}/driver/${id}`;
+    return this.authHttp.get(url,this._options)
                     .map(res => <User>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getDriversList():Observable<User[]>{
-    let url = `${this.baseURL}/driver`;
-    return this.http.get(url,this._options)
+  getAllDriversList():Observable<User[]>{
+    let url = `${SERVER_URL}/driver`;
+    return this.authHttp.get(url,this._options)
+                    .map((res:Response) => <User[]>(res.json()))
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  getAvailableDriversList():Observable<User[]>{
+    let url = `${SERVER_URL}/driver/available`;
+    return this.authHttp.get(url,this._options)
+                    .map((res:Response) => <User[]>(res.json()))
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  getUnAvailableDriversList():Observable<User[]>{
+    let url = `${SERVER_URL}/driver/unavailable`;
+    return this.authHttp.get(url,this._options)
                     .map((res:Response) => <User[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
@@ -48,9 +60,9 @@ export class AdminDriverService {
     console.log("addDriver : "+ JSON.stringify(user));
     const body = JSON.stringify(user);
 
-    let url = `${this.baseURL}/driver/add/`;
+    let url = `${SERVER_URL}/driver/add/`;
 
-    return this.http.post(url, body, this._options)
+    return this.authHttp.post(url, body, this._options)
                       .map((res:Response) => res.json())
                       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
@@ -60,9 +72,9 @@ export class AdminDriverService {
     console.log("editVehicle : "+ JSON.stringify(user));
     const body = JSON.stringify(user);
 
-    let url = `${this.baseURL}/driver/edit`;
+    let url = `${SERVER_URL}/driver/edit`;
 
-    return this.http.put(url, body, this._options)
+    return this.authHttp.put(url, body, this._options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
@@ -70,8 +82,8 @@ export class AdminDriverService {
 
   removeDriver(id: number): Observable<string>{
 
-    let url = `${this.baseURL}/driver/delete/${id}`;
-    return this.http.delete(url,this._options)
+    let url = `${SERVER_URL}/driver/delete/${id}`;
+    return this.authHttp.delete(url,this._options)
                         .map((res:Response) => res.json())
                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

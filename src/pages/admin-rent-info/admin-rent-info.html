@@ -1,0 +1,97 @@
+<!--
+  Generated template for the AdminHireInfo page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Rent Information</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="background-css">
+  <ion-card color="primary">
+    <ion-card-header>
+      <strong>Rent Details</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p color="danger" *ngIf="rent.status == 1 && !rent.finished">Status : Pending</p>
+      <p color="danger" *ngIf="rent.status == 2 && !rent.finished">Status : Accepted</p>
+      <P color="danger" *ngIf="rent.status == 3 && !rent.finished">Status : Rejected</P>
+      <P color="danger" *ngIf="rent.finished">Status : Completed</P>
+      <p>Rent Start Date : {{rent.startDate}}</p>
+      <p>Rent Start Time : {{rent.startTime}}</p>
+      <p>Rent End Date : {{rent.endDate}}</p>
+      <p>Rent End Time : {{rent.endTime}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="secondary">
+    <ion-card-header>
+      <strong>Customer Details</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Name : {{rent.customer.fullname}}</p>
+      <p>Address : {{rent.customer.address}}</p>
+      <p>Phone : {{rent.customer.phone}}</p>
+      <p>NIC : {{rent.customer.nic}}</p>
+      <p>E-Mail : {{rent.customer.email}}</p>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card color="light" *ngIf="rent.status == 1">
+    <ion-card-header>
+      <strong>Vehicle Details</strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Type : {{rent.vehicle.type}}</p>
+      <p>Model Name : {{rent.vehicle.modelName}}</p>
+      <p>Vehicle No : {{rent.vehicle.vehicleNo}}</p>
+      <p>Colour : {{rent.vehicle.colour}}</p>
+      <p>Current Millage : {{rent.vehicle.currentMillage}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="rent.status == 2 && !rent.finished">
+    <form #form="ngForm" (ngSubmit)="completeRent(form.value)" novalidate>
+      <ion-list>
+
+        <ion-item>
+          <ion-label floating>Start Millage</ion-label>
+          <ion-input type="text" name="startMillage" [(ngModel)]="rent.startMilage" [readonly]="true" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>End Millage</ion-label>
+          <ion-input type="text" name="endtMillage" [(ngModel)]="rent.endMilage" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-textarea name="description" [(ngModel)]="rent.description" placeholder="Enter a description"></ion-textarea>
+        </ion-item>
+
+        <div padding>
+          <button ion-button color="primary" block type="submit" [disabled]="!form.valid">Complete Rent</button>
+        </div>
+
+      </ion-list>
+    </form>
+  </div>
+
+  <div align="center" *ngIf="rent.status == 1">
+    <button ion-button round outline
+            (click)="acceptRent(rent)"
+            color="secondary">Accept</button>
+  </div>
+  <div align="center" *ngIf="rent.status == 1">
+    <button ion-button round outline
+            (click)="rejectRent(rent)"
+            color="danger">Reject</button>
+  </div>
+
+  <h4 *ngIf="rent.finished">Rent Amount: Rs.{{rent.amount}}</h4>
+
+</ion-content>

@@ -5,6 +5,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import {Hire} from "../app/model/hire";
+import {AuthHttp} from "angular2-jwt";
+import {SERVER_URL} from "../config";
 
 /*
   Generated class for the AdminHireService provider.
@@ -15,42 +17,68 @@ import {Hire} from "../app/model/hire";
 @Injectable()
 export class AdminHireService {
 
-  private baseURL:string = '';
   private _headers: Headers;
   private _options: RequestOptions;
 
-  constructor(public http: Http) {
+  constructor(public http: Http,private authHttp: AuthHttp) {
     console.log('Hello AdminDriverService Provider');
-    this.baseURL = 'http://localhost:8080/rest'; 
 
     this._headers = new Headers({ 'Content-Type': 'application/json' ,
       "Authorization": "Basic " + btoa('username:password'),
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Allow-Methods': '*',
       'Access-Control-Allow-Origin': '*'});
-    this._options = new RequestOptions({ headers: this._headers }); 
+
+    this._options = new RequestOptions({ headers: this._headers });
+
   }
 
 
   getListOfHireDetails():Observable<Hire[]>{
-    let url = `${this.baseURL}/hire`;
-    return this.http.get(url,this._options)
+    let url = `${SERVER_URL}/hire`;
+    return this.authHttp.get(url,this._options)
                     .map((res:Response) => <Hire[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  getListOfPendingHireDetails():Observable<Hire[]>{
+    let url = `${SERVER_URL}/hire/pending`;
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Hire[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getListOfAcceptedHireDetails():Observable<Hire[]>{
+    let url = `${SERVER_URL}/hire/accepted`;
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Hire[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getListOfRejectedHireDetails():Observable<Hire[]>{
+    let url = `${SERVER_URL}/hire/rejected`;
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Hire[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getListOfCompletedHireDetails():Observable<Hire[]>{
+    let url = `${SERVER_URL}/hire/completed`;
+    return this.authHttp.get(url,this._options)
+      .map((res:Response) => <Hire[]>(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   getHireDetails(id:number):Observable<Hire>{
-    let url = `${this.baseURL}/hire/${id}`;
-    console.log('service fdbfghgjhjhjgjjhj');
-    console.log('url: '+url);
-    return this.http.get(url,this._options)
+    let url = `${SERVER_URL}/hire/${id}`;
+    return this.authHttp.get(url)
                     .map(res => <Hire>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getHireDetailsByUser(customerId: number):Observable<Hire[]>{
-    let url = `${this.baseURL}/hire//hireByUser/${customerId}`;
-    return this.http.get(url,this._options)
+    let url = `${SERVER_URL}/hire//hireByUser/${customerId}`;
+    return this.authHttp.get(url,this._options)
                     .map((res:Response) => <Hire[]>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
@@ -59,31 +87,57 @@ export class AdminHireService {
   addHireDetails(hire:Hire, customerId: number):Observable<Hire[]>{
     let bodyString = JSON.stringify(hire);
 
-    let url = `${this.baseURL}/hire/add/${customerId}`;
-    return this.http.post(url, hire, this._options)
+    let url = `${SERVER_URL}/hire/add/${customerId}`;
+    return this.authHttp.post(url, hire, this._options)
                       .map((res:Response) => res.json()) 
+
                       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-
-
   }
 
   editHireDetails(hire:Hire):Observable<Hire[]>{
+
     let bodyString = JSON.stringify(hire);
-
-    let url = `${this.baseURL}/hire//edit`;
-
+    let url = `${SERVER_URL}/hire//edit`;
     console.log(hire);
-
-    return this.http.put(`${url}/${hire.id}`, hire, this._options) 
-                         .map((res:Response) => res.json()) 
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error')); 
+    return this.authHttp.put(`${url}/${hire.id}`, hire, this._options)
+                         .map((res:Response) => res.json())
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+ 
+
+  acceptHireDetails(hire:Hire){
+    let body = JSON.stringify(hire);
+    let url = `${SERVER_URL}/hire/edit`;
+    return this.authHttp.put(url, body, this._options)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+
+
   removeHireDetails(id:number):Observable<string>{
-    let url = `${this.baseURL}/hire/delete/${id}`;
+    let url = `${SERVER_URL}/hire/delete/${id}`;
     return this.http.delete(url,this._options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  rejectHireDetails(hire:Hire){
+    let body = JSON.stringify(hire);
+    let url = `${SERVER_URL}/hire/edit`;
+    return this.authHttp.put(url, body, this._options)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  completeHireDetails(hire:Hire){
+    let body = JSON.stringify(hire);
+    let url = `${SERVER_URL}/hire/edit`;
+    return this.authHttp.put(url, body, this._options)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
   }
 
 }

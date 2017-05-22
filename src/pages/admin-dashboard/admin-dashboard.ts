@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AdminRentDetails} from "../admin-rent-details/admin-rent-details";
-import {AdminNotifications} from "../admin-notifications/admin-notifications";
 import {AdminHireDetails} from "../admin-hire-details/admin-hire-details";
 import {AdminAvailableCars} from "../admin-available-cars/admin-available-cars";
 import {AdminAvailableDrivers} from "../admin-available-drivers/admin-available-drivers";
+import {AuthHttp, JwtHelper} from "angular2-jwt";
+import {AuthService} from "../../providers/auth-service";
+import {SERVER_URL} from "../../config";
 
 
 /**
@@ -20,7 +22,37 @@ import {AdminAvailableDrivers} from "../admin-available-drivers/admin-available-
 })
 export class AdminDashboard {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user: string;
+  message: string;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private readonly authService: AuthService,
+              private readonly jwtHelper: JwtHelper,
+              private readonly  authHttp: AuthHttp) {
+
+    this.authService.authUser.subscribe(jwt => {
+      if (jwt) {
+        const decoded = this.jwtHelper.decodeToken(jwt);
+        this.user = decoded.sub
+      }
+      else {
+        this.user = null;
+      }
+    });
+  }
+
+
+
+  ionViewWillEnter() {
+    this.authHttp.get(`${SERVER_URL}/secret`).subscribe(
+      data => this.message = data.text(),
+      err => console.log(err)
+    );
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   ionViewDidLoad() {
@@ -44,8 +76,6 @@ export class AdminDashboard {
     this.navCtrl.push(AdminHireDetails);
   }
 
-  showNotificationPage(){
-    this.navCtrl.push(AdminNotifications);
-  }
+
 
 }

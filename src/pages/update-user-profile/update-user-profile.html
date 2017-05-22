@@ -1,0 +1,104 @@
+<!--
+  Generated template for the UpdateUserProfile page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>User Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="submitToUpdateUser(form.value)">
+    <ion-list>
+      <ion-item>
+        <ion-label floating color="appbase">Full Name</ion-label>
+        <ion-input
+          name="fullname"
+          type="text"
+          [(ngModel)]= "user.fullname"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">E-Mail</ion-label>
+        <ion-input [readonly]="true"
+          name="email"
+          type="text"
+          [(ngModel)]= "user.email"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">NIC</ion-label>
+        <ion-input
+          name="nic"
+          type="text"
+          [(ngModel)]= "user.nic"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Address</ion-label>
+        <ion-input
+          name="address"
+          type="text"
+          [(ngModel)]= "user.address"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating color="appbase">Phone</ion-label>
+        <ion-input
+          name="phone"
+          type="text"
+          [(ngModel)]= "user.phone"
+          required>
+        </ion-input>
+      </ion-item>
+
+        <ion-item>
+          <ion-label floating color="appbase">Password</ion-label>
+          <ion-input
+                     name="newpassword"
+                     type="password"
+                     [(ngModel)]= "user.password"
+                     required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating color="appbase">Confirm Password</ion-label>
+          <ion-input
+                     name="reenterpassword"
+                     type="password"
+                     [(ngModel)]= "user.confirmPassword"
+                     required>
+          </ion-input>
+          <!--<div *ngIf="user.confirmPassword != user.password && userProfilForm.reenterpassword.touched" class="form-error">Password do not match.</div>
+        -->
+        </ion-item>
+
+
+      <ion-item>
+        <button ion-button block type="submit" [disabled] = "!form.valid || user.confirmPassword !== user.password" >Edit User</button>
+      </ion-item>
+
+    </ion-list>
+  </form>
+</ion-content>
