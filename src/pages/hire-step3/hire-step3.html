@@ -14,6 +14,8 @@
   
 <ion-content padding class="background-css">
   <div>
+    <h2><strong>Enter Aditional Message if any</strong></h2>
+              <hr>
     <form #form="ngForm" (ngSubmit)="confirmHireCar(form.value)"> 
       <ion-list>
         <ion-item>
@@ -21,14 +23,14 @@
         </ion-item>
 
         <ion-item>
-            <button ion-button block type="submit">Confirm</button>
+            <button color="secondary" ion-button block type="submit">Confirm</button>
         </ion-item>
 
       </ion-list>
     </form>
-    <ion-item>
+ 
             <button ion-button round (click)="cancelHireRequet()">Cancel</button>
-    </ion-item>
+  
   </div>
 
 </ion-content>

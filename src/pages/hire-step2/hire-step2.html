@@ -14,6 +14,9 @@
 
 
 <ion-content padding class="background-css">
+  <h2><strong>Provide Your Hire Details</strong></h2>
+              <hr>
+
   <form #form="ngForm" (ngSubmit)="submitHireDetails(form.value)">
         <ion-list>
           <ion-item>
@@ -44,14 +47,14 @@
           </ion-item>
 
           <ion-item>
-            <button ion-button block type="submit">Continue</button>
+            <button color="secondary" ion-button block type="submit">Continue</button>
           </ion-item>
 
         </ion-list>
       </form>
 
-      <ion-item>
+     
             <button ion-button round (click)="cancelHireRequet()">Cancel</button>
-      </ion-item>
+    
 
 </ion-content>

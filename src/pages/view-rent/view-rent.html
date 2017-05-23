@@ -15,15 +15,19 @@
 
 <ion-content padding  class="background-css" *ngIf="rent">
   <div>
-              <br><br><br><br>
+              <br><br><br>
+
+              <h2><strong>Your Rent Details</strong></h2>
+              <hr>
+
               <h4>Rent Start Date: {{rent.startDate}}</h4> 
               <h4>Rent Start Time: {{rent.startTime}}</h4> 
         
-              <p *ngIf="rent.status==1">Rent Status: <span style="color:blue;font-weight:bold">Pending</span></p>
-              <p *ngIf="rent.status==2">Rent Status: <span style="color:green;font-weight:bold">Accepted</span></p>
-              <p *ngIf="rent.status==3">Rent Status: <span style="color:red;font-weight:bold">Rejected</span></p>
+              <h4 *ngIf="rent.status==1">Rent Status: <span style="color:blue;font-weight:bold">Pending</span></h4>
+              <h4 *ngIf="rent.status==2">Rent Status: <span style="color:green;font-weight:bold">Accepted</span></h4>
+              <h4 *ngIf="rent.status==3">Rent Status: <span style="color:red;font-weight:bold">Rejected</span></h4>
               
-              <p *ngIf="rent.description">{{rent.description}}</p>
+              <h4 *ngIf="rent.description">{{rent.description}}</h4>
           
   </div>
 

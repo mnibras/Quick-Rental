@@ -13,23 +13,19 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-css">
   <div *ngIf="rentList">
    <ion-list>
       <ion-item *ngFor="let rent of rentList">
-          <p>{{rent.startDate}}</p>
-          <p>{{rent.startTime}}</p>
-          <p *ngIf="rent.status==1"><span style="color:blue;font-weight:bold">Pending</span></p>
-          <p *ngIf="rent.status==2"><span style="color:green;font-weight:bold">Accepted</span></p>
-          <p *ngIf="rent.status==3"><span style="color:red;font-weight:bold">Rejected</span></p>
-          <p *ngIf="rent.description">{{rent.description}}</p>
-          <button ion-button clear item-right (click)="viewRent(rent.id)">View</button>
+          <h5>{{rent.startDate}}</h5>
+          <h5>{{rent.startTime}}</h5>
+          <h5 *ngIf="rent.status==1"><span style="color:blue;font-weight:bold">Pending</span></h5>
+          <h5 *ngIf="rent.status==2"><span style="color:green;font-weight:bold">Accepted</span></h5>
+          <h5 *ngIf="rent.status==3"><span style="color:red;font-weight:bold">Rejected</span></h5>
+          <h5 *ngIf="rent.description">{{rent.description}}</h5>
+          <button color="secondary" ion-button clear item-right (click)="viewRent(rent.id)">View</button>
       </ion-item>
     </ion-list>
-  
-
-
-    <button ion-item (click)="backToDashboard()"></button>
   </div>
 
 </ion-content>

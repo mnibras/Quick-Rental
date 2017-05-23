@@ -22,45 +22,50 @@
   
   <div class="input">
 		  <ion-grid>
-			<ion-row>
-				<ion-col width-50>
-					<ion-card>
-						<button ion-button block (click)="loadHirePage()">
-								<ion-icon name="car"></ion-icon>	
-                 <p>Hire Car</p>	
-						</button>
-					</ion-card>
-         
-				</ion-col>
-				<ion-col width-50>
-					<ion-card>
-						<button ion-button block (click)="loadRentPage()">
-						  <ion-icon name="bus"></ion-icon>
-						  <p> Rent Car </p>
-						</button>
-					</ion-card>
-				</ion-col>
-			</ion-row>
-			<ion-row>
-				<ion-col width-25>
-					<ion-card>
-					  
-					</ion-card>
-				</ion-col>
-				<ion-col width-50>
-					<ion-card>
-					 <button ion-button block (click)="loadNotificationsPage()" >
-							 <ion-icon name="notifications"></ion-icon>
-							 <p>Notifications</p>
-							</button>
-					</ion-card>
-				</ion-col>
-				<ion-col width-25>
-					<ion-card>
-					  
-					</ion-card>
-				</ion-col>
-			</ion-row>
+				<ion-row>
+					<ion-col>
+							<img src='./assets/img/araba-kiralama.jpg'>
+					</ion-col>
+				</ion-row>
+					<ion-row>
+						<ion-col width-50>
+							<ion-card>
+								<button ion-button block (click)="loadHirePage()">
+										<ion-icon name="car"></ion-icon>	
+										<p>Hire Car</p>	
+								</button>
+							</ion-card>
+						
+						</ion-col>
+						<ion-col width-50>
+							<ion-card>
+								<button ion-button block (click)="loadRentPage()">
+									<ion-icon name="bus"></ion-icon>
+									<p> Rent Car </p>
+								</button>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col width-25>
+							<ion-card>
+								
+							</ion-card>
+						</ion-col>
+						<ion-col width-50>
+							<ion-card>
+							<button ion-button block (click)="loadNotificationsPage()" >
+									<ion-icon name="notifications"></ion-icon>
+									<p>Notifications</p>
+									</button>
+							</ion-card>
+						</ion-col>
+						<ion-col width-25>
+							<ion-card>
+								
+							</ion-card>
+						</ion-col>
+					</ion-row>
 		</ion-grid>
   </div>
 </ion-content>

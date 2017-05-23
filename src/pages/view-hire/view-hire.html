@@ -15,17 +15,20 @@
 
 <ion-content padding class="background-css" *ngIf="hire" >
   <div>
-              <br><br><br><br>
-        
+              <br><br><br>
+
+              <h2><strong>Your Hire Details</strong></h2>
+              <hr>
+
               <h4>Hire Location: {{hire.location}}</h4> 
               <h4>Hire Destination: {{hire.destination}}</h4> 
 
-              <p *ngIf="hire.status==1">Hire Status: <span style="color:blue;font-weight:bold">Pending</span></p>
-              <p *ngIf="hire.status==2">Hire Status: <span style="color:green;font-weight:bold">Accepted</span></p>
-              <p *ngIf="hire.status==3">Hire Status: <span style="color:red;font-weight:bold">Rejected</span></p>
+              <h4 *ngIf="hire.status==1">Hire Status: <span style="color:blue;font-weight:bold">Pending</span></h4>
+              <h4 *ngIf="hire.status==2">Hire Status: <span style="color:green;font-weight:bold">Accepted</span></h4>
+              <h4 *ngIf="hire.status==3">Hire Status: <span style="color:red;font-weight:bold">Rejected</span></h4>
               
-              <h5 *ngIf="hire.amount == 0"><span style="color:red;font-weight:bold">Hire Not Starated</span> </h5> 
-              <h5 *ngIf="hire.amount != 0"><span style="color:green;font-weight:bold">Hire amount {{hire.amount}} </span></h5> 
+              <h4 *ngIf="hire.amount == 0"><span style="color:red;font-weight:bold">Hire Not Starated</span> </h4> 
+              <h4 *ngIf="hire.amount != 0"><span style="color:green;font-weight:bold">Hire amount {{hire.amount}} </span></h4> 
           
   </div>
 

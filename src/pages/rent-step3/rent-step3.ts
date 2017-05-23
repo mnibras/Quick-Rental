@@ -24,26 +24,6 @@ export class RentStep3 {
   public customerId: number;
   public rent: Rent;
 
- /* rent = {
-    id: 0,
-    startDate: '',
-    startTime:'',
-    endDate:'',
-    endTime:'',
-    startMilage:0,
-    endMilage:0,
-    advanceAmount:0,
-    amount:0,
-    description:'',
-    finished:0,
-    status:1,
-
-    customer:null,
-    vehicle:null
-
-  }*/
-  
-
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -83,7 +63,7 @@ export class RentStep3 {
     */
     
     this.rent.startDate = formData.startDate;
-    console.log('Start Date :'+this.rent.startDate);
+
     this.rent.endDate = formData.endDate;
     this.rent.startTime = formData.startTime;
     this.rent.endTime = formData.endTime;
