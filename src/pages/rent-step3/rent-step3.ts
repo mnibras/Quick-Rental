@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams,AlertController, LoadingController 
 import { HomePage } from '../home/home';
 import {Rent} from "../../app/model/rent";
 import { AdminRentService } from '../../providers/admin-rent-service';
+import {AuthService} from "../../providers/auth-service";
+import {JwtHelper} from "angular2-jwt";
 
 /**
  * Generated class for the RentStep3 page.
@@ -20,8 +22,9 @@ export class RentStep3 {
 
   public pickedVehicleId: number;
   public customerId: number;
+  public rent: Rent;
 
-  rent = {
+ /* rent = {
     id: 0,
     startDate: '',
     startTime:'',
@@ -32,13 +35,13 @@ export class RentStep3 {
     advanceAmount:0,
     amount:0,
     description:'',
-    isFinished:0,
+    finished:0,
     status:1,
 
     customer:null,
     vehicle:null
 
-  }
+  }*/
   
 
 
@@ -46,9 +49,22 @@ export class RentStep3 {
               public navParams: NavParams,
               public alertCtrl: AlertController,
               public loadingCtrl: LoadingController,
-              public adminRentService: AdminRentService) {
+              public adminRentService: AdminRentService,
+              private readonly jwtHelper: JwtHelper,
+              private readonly authService: AuthService) {
 
     this.pickedVehicleId = navParams.get('pickedVehicleId');
+    this.rent = new Rent();
+
+        this.authService.authUser.subscribe(jwt => {
+          if (jwt) {
+            const decoded = this.jwtHelper.decodeToken(jwt);
+            this.customerId = decoded.userId;
+          }
+          else {
+            this.customerId = 0;
+          }
+        });
     
   }
 
@@ -57,15 +73,15 @@ export class RentStep3 {
   }
 
   submitRentDetails(formData){
-
+/*
     var date = new Date();
 
     var currentYear = date.getFullYear();
     var currentMonth = date.getMonth() + 1;
     var currentDate = date.getDate();
     
+    */
     
-    this.customerId = 100;
     this.rent.startDate = formData.startDate;
     console.log('Start Date :'+this.rent.startDate);
     this.rent.endDate = formData.endDate;

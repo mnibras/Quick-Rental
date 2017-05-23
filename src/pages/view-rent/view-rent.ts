@@ -4,6 +4,9 @@ import { AdminRentService } from '../../providers/admin-rent-service';
 import { CustomerRentNotification } from '../customer-rent-notification/customer-rent-notification';
 import { Rent } from "../../app/model/rent";
 import { HomePage } from '../home/home';
+import {AuthService} from "../../providers/auth-service";
+import {JwtHelper} from "angular2-jwt";
+
 
 /**
  * Generated class for the ViewRent page.
@@ -18,7 +21,7 @@ import { HomePage } from '../home/home';
 })
 export class ViewRent {
 
-  public customerId = 100;
+  public customerId :number;
   public rentId: number;
   public rent: Rent
 
@@ -26,9 +29,20 @@ export class ViewRent {
               public navParams: NavParams,
               public alertCtrl: AlertController,
               public loadingCtrl: LoadingController,
-              public adminRentService: AdminRentService) {
+              public adminRentService: AdminRentService,
+              private readonly jwtHelper: JwtHelper,
+              private readonly authService: AuthService) {
             
         this.rentId = navParams.get('rentId');
+        this.authService.authUser.subscribe(jwt => {
+          if (jwt) {
+            const decoded = this.jwtHelper.decodeToken(jwt);
+            this.customerId = decoded.userId;
+          }
+          else {
+            this.customerId = 0;
+          }
+    });
   }
 
   ionViewDidLoad() {
@@ -46,6 +60,7 @@ export class ViewRent {
                                   loading.dismiss();
                                   this.rent = response;
                                   console.log(JSON.stringify(response));
+                                  
                                 },
                                 err => {
                                   loading.dismiss();
@@ -71,6 +86,7 @@ export class ViewRent {
             let loading = this.loadingCtrl.create({
                 content: 'Deleting...'
             });
+
             loading.present();
             this.adminRentService.removeRentDetails(id)
                          .subscribe(
@@ -78,12 +94,12 @@ export class ViewRent {
                                   console.log(response);
                                   console.log('Rent deleted');
                                   loading.dismiss();
-                                  this.navCtrl.popTo(HomePage);
+                                  this.navCtrl.setRoot(HomePage);
                                   this.showAlert('Notice','Rent Deleted Succuss');
                               },
                               err => {
                                     loading.dismiss();
-                                    this.navCtrl.popTo(HomePage);
+                                    this.navCtrl.setRoot(HomePage);
                                     this.showAlert('Notice','Rent Deleted Succuss');
                                 });
                          

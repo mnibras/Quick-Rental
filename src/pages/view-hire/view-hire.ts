@@ -4,6 +4,8 @@ import { AdminHireService } from '../../providers/admin-hire-service';
 import { Hire } from "../../app/model/hire";
 import { CustomerHireNotification } from '../customer-hire-notification/customer-hire-notification';
 import { HomePage } from '../home/home';
+import {AuthService} from "../../providers/auth-service";
+import {JwtHelper} from "angular2-jwt";
 
 /**
  * Generated class for the ViewHire page.
@@ -18,7 +20,7 @@ import { HomePage } from '../home/home';
 })
 export class ViewHire {
 
-  public customerId = 100;
+  public customerId :number;
   public hireId: number;
   public hire: Hire;
 
@@ -26,9 +28,20 @@ export class ViewHire {
               public navParams: NavParams,
               public alertCtrl: AlertController,
               public loadingCtrl: LoadingController,
-              public adminHireService: AdminHireService) {
+              public adminHireService: AdminHireService,
+              private readonly jwtHelper: JwtHelper,
+              private readonly authService: AuthService) {
 
           this.hireId = navParams.get('hireId');
+          this.authService.authUser.subscribe(jwt => {
+          if (jwt) {
+            const decoded = this.jwtHelper.decodeToken(jwt);
+            this.customerId = decoded.userId;
+          }
+          else {
+            this.customerId = 0;
+          }
+    });
   }
 
 

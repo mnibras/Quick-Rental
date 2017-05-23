@@ -3,7 +3,12 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { HomePage } from '../home/home';
 import { AdminHireService } from '../../providers/admin-hire-service';
 import { CustomerService } from '../../providers/customer-service';
-import { User } from '../../app/model/user'
+import { User } from '../../app/model/user';
+import { Hire } from '../../app/model/hire';
+import {AuthService} from "../../providers/auth-service";
+import {JwtHelper} from "angular2-jwt";
+
+
 
 /**
  * Generated class for the HireStep3 page.
@@ -21,36 +26,31 @@ export class HireStep3 {
   public description: String;
   public customerId: number;
   public customer: User;
+  public hire: Hire;
 
-  hire = {
-    id: 0,
-    amount:0,
-    bookingSeats:0,
-    description: '',
-    destination: '',
-    endMilage: 0,
-    hireDate: '',
-    hireTime: '',
-    finished:false,
-    location: '',
-    startMilage: 0,
-    status:1,
-
-    customer: null,
-    driver: null,
-    vehicle: null,
-
-
-  }
+ 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
               public loadingCtrl: LoadingController,
               private adminHireService: AdminHireService,
-              private customerService: CustomerService) {
+              private customerService: CustomerService,
+              private readonly jwtHelper: JwtHelper,
+              private readonly authService: AuthService) {
 
+    this.hire = new Hire();
     this.hire = navParams.get('hire');
+
+    this.authService.authUser.subscribe(jwt => {
+          if (jwt) {
+            const decoded = this.jwtHelper.decodeToken(jwt);
+            this.customerId = decoded.userId;
+          }
+          else {
+            this.customerId = 0;
+          }
+    });
   }
 
   ionViewDidLoad() {
@@ -64,10 +64,7 @@ export class HireStep3 {
 
     loading.present();
     this.hire.description = formData.description;
-
-    this.customerId = 100;
-
-    
+   
     this.adminHireService.addHireDetails(this.hire, this.customerId)
                           .subscribe(
                               response =>{

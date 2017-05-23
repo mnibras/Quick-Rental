@@ -4,6 +4,8 @@ import { HomePage } from "../home/home";
 import { AdminRentService } from '../../providers/admin-rent-service';
 import { Rent } from "../../app/model/rent";
 import { ViewRent } from '../view-rent/view-rent';
+import {AuthService} from "../../providers/auth-service";
+import {JwtHelper} from "angular2-jwt";
 
 /**
  * Generated class for the CustomerRentNotification page.
@@ -19,12 +21,24 @@ import { ViewRent } from '../view-rent/view-rent';
 export class CustomerRentNotification {
 
   public rentList: Rent[];
-  public customerId = 100;
+  public customerId: number
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
-              public adminRentService: AdminRentService) {
+              public adminRentService: AdminRentService,
+              private readonly jwtHelper: JwtHelper,
+              private readonly authService: AuthService) {
+          
+      this.authService.authUser.subscribe(jwt => {
+          if (jwt) {
+            const decoded = this.jwtHelper.decodeToken(jwt);
+            this.customerId = decoded.userId;
+          }
+          else {
+            this.customerId = 0;
+          }
+      });
   }
 
   ionViewDidLoad() {

@@ -4,6 +4,8 @@ import { HomePage } from '../home/home';
 import { ViewHire } from '../view-hire/view-hire';
 import { AdminHireService } from '../../providers/admin-hire-service';
 import { Hire } from "../../app/model/hire";
+import {AuthService} from "../../providers/auth-service";
+import {JwtHelper} from "angular2-jwt";
 
 /**
  * Generated class for the CustomerHireNotification page.
@@ -19,14 +21,25 @@ import { Hire } from "../../app/model/hire";
 export class CustomerHireNotification {
 
   public hireList: Hire[];
-  public customerId = 100;
+  public customerId: number
 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
-              public adminHireService: AdminHireService) {
-            
+              public adminHireService: AdminHireService,
+              private readonly jwtHelper: JwtHelper,
+              private readonly authService: AuthService) {
+          
+      this.authService.authUser.subscribe(jwt => {
+          if (jwt) {
+            const decoded = this.jwtHelper.decodeToken(jwt);
+            this.customerId = decoded.userId;
+          }
+          else {
+            this.customerId = 0;
+          }
+      });
   }
 
   ngOnInit(){

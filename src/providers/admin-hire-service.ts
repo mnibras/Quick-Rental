@@ -118,7 +118,7 @@ export class AdminHireService {
 
   removeHireDetails(id:number):Observable<string>{
     let url = `${SERVER_URL}/hire/delete/${id}`;
-    return this.http.delete(url,this._options)
+    return this.authHttp.delete(url,this._options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

@@ -42,7 +42,7 @@ export class AdminCarService {
 
   getAvailableVehicles():Observable<Vehicle[]>{
     let url = `${SERVER_URL}/vehicle/getAvailableVehicles/true`;
-    return this.http.get(url)
+    return this.authHttp.get(url,this._options)
                     .map(res => <Vehicle>(res.json()))
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
