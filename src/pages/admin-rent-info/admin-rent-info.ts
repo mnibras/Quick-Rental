@@ -72,8 +72,12 @@ export class AdminRentInfo {
           loading.dismiss();
           this.navCtrl.popTo(AdminRentHistory);
           console.log(data);
-        }
-      );
+        },
+        err => {
+          loading.dismiss();
+          console.log("Error : "+err);
+        });
+
   }
 
   completeRent(form:NgForm){

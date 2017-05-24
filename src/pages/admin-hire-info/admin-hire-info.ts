@@ -98,8 +98,11 @@ export class AdminHireInfo {
           loading.dismiss();
           this.navCtrl.popTo(AdminHireHistory);
           console.log(data);
-        }
-      );
+        },
+        err => {
+          loading.dismiss();
+          console.log("Error : "+err);
+        });
   }
 
   rejectHire(hire:Hire){
