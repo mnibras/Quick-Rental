@@ -19,7 +19,7 @@ import {RentMoreOptionPage} from "../rent-more-option-page/rent-more-option-page
 })
 export class AdminRentHistory {
 
-  public rentList: Rent[];
+  public rentList: Rent[] = [];
   public pageTitle:string;
   public isRentListEmpty:boolean;
 
@@ -44,15 +44,21 @@ export class AdminRentHistory {
   }
 
   getAllRentDetails(){
+    let loading = this.loadingCtrl.create({
+      content: 'fetching rent details...'
+    });
+    loading.present();
     this.adminRentService.getListOfRentDetails().subscribe(
       data => {
-        console.log(JSON.stringify(data));
-        this.rentList = data;
+        loading.dismiss();
+        if(data != null)
+            this.rentList = data;
         this.pageTitle = "All Rent List";
         this.isRentListEmpty = this.rentList[0] == null? true : false;
 
       },
       err => {
+        loading.dismiss();
         this.rentList = [];
         this.isRentListEmpty = false;
         console.log("Error : "+err);
@@ -60,11 +66,17 @@ export class AdminRentHistory {
   }
 
   deleteRent(id:number){
+    let loading = this.loadingCtrl.create({
+      content: 'Deleting rent details...'
+    });
+    loading.present();
     this.adminRentService.removeRentDetails(id).subscribe(
       data => {
+        loading.dismiss();
         console.log(JSON.stringify(data));
       },
       err => {
+        loading.dismiss();
         console.log("Error : "+err);
       });
 
@@ -89,7 +101,8 @@ export class AdminRentHistory {
           this.adminRentService.getListOfRentDetails().subscribe(
             data => {
               loading.dismiss();
-              this.rentList = data;
+              if(data != null)
+                this.rentList = data;
               this.pageTitle = "All Rents";
               this.isRentListEmpty = this.rentList[0] == null? true : false;
               console.log(JSON.stringify(this.rentList));
@@ -107,7 +120,8 @@ export class AdminRentHistory {
             data => {
               loading.dismiss();
               this.pageTitle = "Pending Rents";
-              this.rentList = data;
+              if(data != null)
+                this.rentList = data;
               this.isRentListEmpty = this.rentList[0] == null? true : false;
               console.log(JSON.stringify(this.rentList));
             },
@@ -124,7 +138,8 @@ export class AdminRentHistory {
             data => {
               loading.dismiss();
               this.pageTitle = "Accepted Rents";
-              this.rentList = data;
+              if(data != null)
+                this.rentList = data;
               this.isRentListEmpty = this.rentList[0] == null? true : false;
               console.log(JSON.stringify(this.rentList));
             },
@@ -142,7 +157,8 @@ export class AdminRentHistory {
             data => {
               loading.dismiss();
               this.pageTitle = "Rejected Rents";
-              this.rentList = data;
+              if(data != null)
+                this.rentList = data;
               this.isRentListEmpty = this.rentList[0] == null? true : false;
               console.log(JSON.stringify(this.rentList));
             },
@@ -160,7 +176,8 @@ export class AdminRentHistory {
             data => {
               loading.dismiss();
               this.pageTitle = "Completed Rents";
-              this.rentList = data;
+              if(data != null)
+                this.rentList = data;
               this.isRentListEmpty = this.rentList[0] == null? true : false;
               console.log(JSON.stringify(this.rentList));
             },

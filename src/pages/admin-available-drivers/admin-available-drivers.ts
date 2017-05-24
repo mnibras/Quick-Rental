@@ -22,7 +22,7 @@ import {DriverMoreOptionPage} from "../driver-more-option-page/driver-more-optio
   templateUrl: 'admin-available-drivers.html',
 })
 export class AdminAvailableDrivers {
-  public driverList:User[];
+  public driverList:User[]=[];
   public isDriverListEmpty: boolean;
   public pageTitle:string ;
 
@@ -69,7 +69,8 @@ export class AdminAvailableDrivers {
           this.adminDriverService.getAllDriversList().subscribe(
             data => {
               loading.dismiss();
-              this.driverList = data;
+              if(data != null)
+                this.driverList = data;
               this.pageTitle = "All Drivers";
               this.isDriverListEmpty = this.driverList[0] == null? true : false;
               console.log(JSON.stringify(this.driverList));
@@ -87,7 +88,8 @@ export class AdminAvailableDrivers {
             data => {
               loading.dismiss();
               this.pageTitle = "Available Drivers";
-              this.driverList = data;
+              if(data != null)
+                this.driverList = data;
               this.isDriverListEmpty = this.driverList[0] == null? true : false;
               console.log(JSON.stringify(this.driverList));
             },
@@ -106,7 +108,8 @@ export class AdminAvailableDrivers {
             data => {
               loading.dismiss();
               this.pageTitle = "Unavailable Drivers";
-              this.driverList = data;
+              if(data != null)
+                this.driverList = data;
               this.isDriverListEmpty = this.driverList[0] == null? true : false;
               console.log(JSON.stringify(this.driverList));
             },
@@ -124,14 +127,21 @@ export class AdminAvailableDrivers {
   }
 
   getDriverDetails(){
+    let loading = this.loadingCtrl.create({
+      content: 'fetching driver details...'
+    });
+    loading.present();
     this.adminDriverService.getAllDriversList().subscribe(
       data => {
+        loading.dismiss();
         this.pageTitle = "All Drivers";
-        this.driverList = data;
+        if(data != null)
+          this.driverList = data;
         this.isDriverListEmpty = this.driverList[0] == null? true : false;
 
       },
       err => {
+        loading.dismiss();
         this.driverList = [];
         this.isDriverListEmpty = true;
         console.log("Error : "+err);
@@ -153,13 +163,20 @@ export class AdminAvailableDrivers {
   }
 
   deleteDriver(id:number){
+    let loading = this.loadingCtrl.create({
+      content: 'Deleting driver details...'
+    });
+    loading.present();
     this.adminDriverService.removeDriver(id).subscribe(
       data => {
+        loading.dismiss();
         console.log(JSON.stringify(data));
         this.navCtrl.popTo(AdminDashboard);
+
         //this.getDriverDetails();
       },
       err => {
+        loading.dismiss();
         console.log("Error : "+err);
       });
 

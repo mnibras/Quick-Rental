@@ -21,7 +21,7 @@ import {VehicleMoreOptionPage} from "../vehicle-more-option-page/vehicle-more-op
   templateUrl: 'admin-available-cars.html',
 })
 export class AdminAvailableCars {
-  public vehiclesList: Vehicle[];
+  public vehiclesList: Vehicle[] = [];
   public isVehicleListEmpty: boolean;
   public pageTitle:string;
 
@@ -68,7 +68,9 @@ export class AdminAvailableCars {
           this.adminCarService.getAllVehiclesList().subscribe(
             data => {
               loading.dismiss();
-              this.vehiclesList = data;
+              if(data != null)
+                this.vehiclesList = data;
+
               this.pageTitle = "All Vehicles";
               this.isVehicleListEmpty = this.vehiclesList[0] == null? true : false;
               console.log(JSON.stringify(this.vehiclesList));
@@ -85,7 +87,8 @@ export class AdminAvailableCars {
           this.adminCarService.getAvailableVehiclesList().subscribe(
             data => {
               loading.dismiss();
-              this.vehiclesList = data;
+              if(data != null)
+                this.vehiclesList = data;
               this.pageTitle = "Available Vehicles";
               this.isVehicleListEmpty = this.vehiclesList[0] == null? true : false;
 
@@ -103,7 +106,8 @@ export class AdminAvailableCars {
           this.adminCarService.getUnAvailableVehiclesList().subscribe(
             data => {
               loading.dismiss();
-              this.vehiclesList = data;
+              if(data != null)
+                this.vehiclesList = data;
               this.pageTitle = "Unavailable Vehicles";
               this.isVehicleListEmpty = this.vehiclesList[0] == null? true : false;
 
@@ -124,29 +128,43 @@ export class AdminAvailableCars {
 
 
   getListOfVehicles(){
-
+    let loading = this.loadingCtrl.create({
+      content: 'fetching vehicle details...'
+    });
+    loading.present();
     this.adminCarService.getAllVehiclesList().subscribe(
                                 data => {
+                                  loading.dismiss();
+                                  if(data != null)
                                     this.vehiclesList = data;
                                   this.pageTitle = "All Vehicles";
                                   this.isVehicleListEmpty = this.vehiclesList[0] == null? true : false;
                                     console.log(JSON.stringify(this.vehiclesList));
                                 },
                                 err => {
+                                  loading.dismiss();
                                     this.vehiclesList = [];
                                     console.log("Error : "+err);
                                 });
   }
 
   getListAvailableOfVehicles(){
+    let loading = this.loadingCtrl.create({
+      content: 'fetching vehicle details...'
+    });
+    loading.present();
     this.adminCarService.getAvailableVehiclesList().subscribe(
       data => {
-        this.vehiclesList = data;
+        loading.dismiss();
+
+        if(data != null)
+          this.vehiclesList = data;
         this.pageTitle = "Available Vehicles";
         this.isVehicleListEmpty = this.vehiclesList[0] == null? true : false;
         console.log(JSON.stringify(this.vehiclesList));
       },
       err => {
+        loading.dismiss();
         this.vehiclesList = [];
         console.log("Error : "+err);
       });
@@ -165,11 +183,18 @@ export class AdminAvailableCars {
   }
 
   deleteVehicle(id:number){
+
+    let loading = this.loadingCtrl.create({
+      content: 'Deleting vehicle details...'
+    });
+    loading.present();
     this.adminCarService.removeVehicle(id).subscribe(
                           data => {
+                            loading.dismiss();
                             console.log(JSON.stringify(data));
                           },
                           err => {
+                            loading.dismiss();
                             console.log("Error : "+err);
                           });
 

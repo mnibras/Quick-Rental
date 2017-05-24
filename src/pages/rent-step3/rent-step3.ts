@@ -45,7 +45,7 @@ export class RentStep3 {
             this.customerId = 0;
           }
         });
-    
+
   }
 
   ionViewDidLoad() {
@@ -59,9 +59,9 @@ export class RentStep3 {
     var currentYear = date.getFullYear();
     var currentMonth = date.getMonth() + 1;
     var currentDate = date.getDate();
-    
+
     */
-    
+
     this.rent.startDate = formData.startDate;
 
     this.rent.endDate = formData.endDate;
@@ -83,7 +83,7 @@ export class RentStep3 {
                                   this.navCtrl.push(HomePage);
                               }
                           );
-    
+
     }
 
 

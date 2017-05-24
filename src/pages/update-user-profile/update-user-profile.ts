@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
 import {User} from "../../app/model/user";
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../../providers/auth-service";
@@ -27,6 +27,8 @@ export class UpdateUserProfile {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public userService:UserService,
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
               private readonly authService: AuthService,
               private readonly jwtHelper: JwtHelper) {
 
@@ -72,12 +74,29 @@ export class UpdateUserProfile {
 
   submitToUpdateUser(form:NgForm){
     this.user.userRole = this.userRole;
+    let loading = this.loadingCtrl.create({
+      content: 'Updating your profile details...'
+    });
+
+    loading.present();
     this.userService.editUser(this.user)
       .subscribe(
         (data:any) => {
+          loading.dismiss();
+          this.showAlert();
           console.log(data);
         }
       );
+  }
+
+  showAlert() {
+
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: 'You have successfully updated.. ',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 

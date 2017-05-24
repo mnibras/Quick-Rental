@@ -28,7 +28,7 @@ export class HireStep3 {
   public customer: User;
   public hire: Hire;
 
- 
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -64,7 +64,7 @@ export class HireStep3 {
 
     loading.present();
     this.hire.description = formData.description;
-   
+
     this.adminHireService.addHireDetails(this.hire, this.customerId)
                           .subscribe(
                               response =>{
@@ -74,7 +74,7 @@ export class HireStep3 {
                                   this.navCtrl.push(HomePage);
                               });
 
-  
+
   }
 
 

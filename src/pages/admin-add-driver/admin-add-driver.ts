@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, App} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, App, LoadingController, AlertController} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 
 import {User} from "../../app/model/user";
@@ -19,7 +19,10 @@ import {AdminDriverService} from "../../providers/admin-driver-service";
 export class AdminAddDriver {
   private driver:User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public adminDriverService:AdminDriverService,
+  constructor(public navCtrl: NavController,
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
+              public navParams: NavParams, public adminDriverService:AdminDriverService,
               public appCtrl: App) {
     this.driver = new User();
   }
@@ -34,13 +37,31 @@ export class AdminAddDriver {
     this.driver.userRole = 3;
 
     console.log("submitToAddDriver : "+ JSON.stringify(this.driver));
+
+    let loading = this.loadingCtrl.create({
+      content: 'Submitting driver details...'
+    });
+
+    loading.present();
     this.adminDriverService.addDriver(this.driver)
       .subscribe(
         (data:any) => {
+          loading.dismiss();
           this.navCtrl.pop();
+          this.showAlert();
           console.log(data);
         }
       );
+  }
+
+  showAlert() {
+
+    let alert = this.alertCtrl.create({
+      title: 'Added a Driver',
+      subTitle: 'You have successfully added.. ',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

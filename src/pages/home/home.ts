@@ -47,7 +47,15 @@ export class HomePage {
   }
 
   logout() {
+    let loading = this.loadingCtrl.create({
+      content: 'logging out...'
+    });
+
+    loading.present();
     this.authService.logout();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 2000);
   }
 
 

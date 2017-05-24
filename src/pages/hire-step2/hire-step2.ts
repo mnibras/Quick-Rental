@@ -28,7 +28,7 @@ export class HireStep2 {
     endMilage: 0,
     hireDate: '',
     hireTime: '',
-    isFinished:0,
+    finished:false,
     location: '',
     startMilage: 0,
     status:1,
@@ -36,7 +36,7 @@ export class HireStep2 {
     customer: null,
     driver: null,
     vehicle: null,
-  
+
   }
 
   constructor(public navCtrl: NavController,
@@ -44,22 +44,22 @@ export class HireStep2 {
               public loadingCtrl: LoadingController) {
     this.hire.location = params.get('location');
     this.hire.destination = params.get('destination');
-    
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HireStep2');
-    
+
   }
 
   submitHireDetails(formData){
-    
+
     this.hire.hireDate = formData.hireDate;
     this.hire.hireTime = formData.hireTime;
-   
+
     var bookingSeatsArray = formData.bookingSeats;
     this.hire.bookingSeats = bookingSeatsArray[0];
-    
+
     //this.presentLoadingDefault();
 
     this.navCtrl.push(HireStep3,{

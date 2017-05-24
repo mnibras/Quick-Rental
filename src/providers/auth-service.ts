@@ -18,7 +18,6 @@ import {User} from "../app/model/user";
 @Injectable()
 export class AuthService {
 
-  private user : User;
   authUser = new ReplaySubject<any>(1);
   private _headers: Headers;
   private _options: RequestOptions;
@@ -40,7 +39,7 @@ export class AuthService {
     this.storage.get('jwt').then(jwt => {
 
       if (jwt && !this.jwtHelper.isTokenExpired(jwt)) {
-        this.authHttp.get(`${SERVER_URL}/authenticate`)
+        this.authHttp.get(`${SERVER_URL}/authenticate`,this._options)
           .subscribe(() => this.authUser.next(jwt),
             (err) => this.storage.remove('jwt').then(() => this.authUser.next(null)));
         // OR
@@ -53,7 +52,7 @@ export class AuthService {
   }
 
   login(values: any): Observable<any> {
-    return this.http.post(`${SERVER_URL}/login`, values)
+    return this.http.post(`${SERVER_URL}/login`, values,this._options)
       .map(response => response.text())
       .map(jwt => this.handleJwtResponse(jwt));
   }
@@ -63,17 +62,9 @@ export class AuthService {
   }
 
   signup(values: any): Observable<any> {
-    return this.http.post(`${SERVER_URL}/signup`, values)
+    return this.http.post(`${SERVER_URL}/signup`, values,this._options)
       .map(response => response.text())
       .map(jwt => {
-
-        /*this.getLoggedInUser(values.username)
-          .subscribe(data => {
-            this.user = data;
-            console.log("Username : "+ this.user.username + " userRole : " +this.user.userRole);
-            this.storage.set('username', this.user.username);
-            this.storage.set('userRole', this.user.userRole);
-          });*/
 
         if (jwt !== 'EXISTS') {
           return this.handleJwtResponse(jwt);

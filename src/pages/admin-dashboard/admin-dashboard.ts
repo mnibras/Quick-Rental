@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
 import {AdminRentDetails} from "../admin-rent-details/admin-rent-details";
 import {AdminHireDetails} from "../admin-hire-details/admin-hire-details";
 import {AdminAvailableCars} from "../admin-available-cars/admin-available-cars";
@@ -27,6 +27,7 @@ export class AdminDashboard {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public loadingCtrl: LoadingController,
               private readonly authService: AuthService,
               private readonly jwtHelper: JwtHelper,
               private readonly  authHttp: AuthHttp) {
@@ -52,7 +53,16 @@ export class AdminDashboard {
   }
 
   logout() {
+    let loading = this.loadingCtrl.create({
+      content: 'logging out...'
+    });
+
+    loading.present();
     this.authService.logout();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 2000);
+
   }
 
   ionViewDidLoad() {

@@ -20,7 +20,7 @@ import {HireMoreOptionPage} from "../hire-more-option-page/hire-more-option-page
 })
 export class AdminHireHistory {
 
-  public hireList: Hire[];
+  public hireList: Hire[] = [];
   public pageTitle:string;
   public isHireListEmpty:boolean;
 
@@ -39,14 +39,24 @@ export class AdminHireHistory {
   }
 
   getAllHireDetails(){
+    let loading = this.loadingCtrl.create({
+      content: 'fetching hire details...'
+    });
+    loading.present();
+
     this.adminHireService.getListOfHireDetails().subscribe(
       data => {
-        this.hireList = data;
+        loading.dismiss();
+        if(data != null)
+          this.hireList = data;
+        console.log("adminHireService.getListOfHireDetail called success ");
         this.pageTitle = "All Hire List";
         this.isHireListEmpty = this.hireList[0] == null? true : false;
         console.log(JSON.stringify(this.hireList));
       },
       err => {
+        console.log("adminHireService.getListOfHireDetail called failed ");
+        loading.dismiss();
         this.hireList = [];
         this.isHireListEmpty = false;
         console.log("Error : "+err);
@@ -62,11 +72,17 @@ export class AdminHireHistory {
   }
 
   deleteHire(id:number){
+    let loading = this.loadingCtrl.create({
+      content: 'Deleting hire details...'
+    });
+    loading.present();
     this.adminHireService.removeHireDetails(id).subscribe(
       data => {
+        loading.dismiss();
         console.log(JSON.stringify(data));
       },
       err => {
+        loading.dismiss();
         console.log("Error : "+err);
       });
 
@@ -91,7 +107,8 @@ export class AdminHireHistory {
           this.adminHireService.getListOfHireDetails().subscribe(
             data => {
               loading.dismiss();
-              this.hireList = data;
+              if(data != null)
+                this.hireList = data;
               this.pageTitle = "All Hires";
               this.isHireListEmpty = this.hireList[0] == null? true : false;
               console.log(JSON.stringify(this.hireList));
@@ -109,7 +126,8 @@ export class AdminHireHistory {
             data => {
               loading.dismiss();
               this.pageTitle = "Pending Hires";
-              this.hireList = data;
+              if(data != null)
+                this.hireList = data;
               this.isHireListEmpty = this.hireList[0] == null? true : false;
               console.log(JSON.stringify(this.hireList));
             },
@@ -126,7 +144,8 @@ export class AdminHireHistory {
             data => {
               loading.dismiss();
               this.pageTitle = "Accepted Hires";
-              this.hireList = data;
+              if(data != null)
+                this.hireList = data;
               this.isHireListEmpty = this.hireList[0] == null? true : false;
               console.log(JSON.stringify(this.hireList));
             },
@@ -144,7 +163,8 @@ export class AdminHireHistory {
             data => {
               loading.dismiss();
               this.pageTitle = "Rejected Hires";
-              this.hireList = data;
+              if(data != null)
+                this.hireList = data;
               this.isHireListEmpty = this.hireList[0] == null? true : false;
               console.log(JSON.stringify(this.hireList));
             },
@@ -162,7 +182,8 @@ export class AdminHireHistory {
             data => {
               loading.dismiss();
               this.pageTitle = "Completed Hires";
-              this.hireList = data;
+              if(data != null)
+                this.hireList = data;
               this.isHireListEmpty = this.hireList[0] == null? true : false;
               console.log(JSON.stringify(this.hireList));
             },

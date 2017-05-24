@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
 import {Rent} from "../../app/model/rent";
 import {Vehicle} from "../../app/model/vehicle";
 import {AdminRentService} from "../../providers/admin-rent-service";
@@ -30,6 +30,8 @@ export class AdminRentInfo {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
               public adminCarService:AdminCarService,
               public adminRentService:AdminRentService) {
 
@@ -41,11 +43,16 @@ export class AdminRentInfo {
   }
 
   acceptRent(rent:Rent){
+    let loading = this.loadingCtrl.create({
+      content: 'You have accepted the details...'
+    });
+    loading.present();
     rent.status = 2;
     rent.startMilage = rent.vehicle.currentMillage;
     this.adminRentService.acceptRentDetails(rent)
       .subscribe(
         (data:any) => {
+          loading.dismiss();
           this.navCtrl.popTo(AdminRentHistory);
           console.log(data);
         }
@@ -53,10 +60,16 @@ export class AdminRentInfo {
   }
 
   rejectRent(rent:Rent){
+    let loading = this.loadingCtrl.create({
+      content: 'You have rejected the details...'
+    });
+    loading.present();
+
     rent.status = 3;
     this.adminRentService.rejectRentDetails(rent)
       .subscribe(
         (data:any) => {
+          loading.dismiss();
           this.navCtrl.popTo(AdminRentHistory);
           console.log(data);
         }
@@ -64,15 +77,32 @@ export class AdminRentInfo {
   }
 
   completeRent(form:NgForm){
+    let loading = this.loadingCtrl.create({
+      content: 'Complete Rent details...'
+    });
+    loading.present();
+
     this.rent.finished = true;
     this.rent.vehicle.currentMillage = this.rent.endMilage;
     this.rent.amount = this.rent.vehicle.rentPerDay * (this.rent.endMilage - this.rent.startMilage);
     this.adminRentService.completeRentDetails(this.rent)
       .subscribe(
         (data:any) => {
+          loading.dismiss();
           this.navCtrl.popTo(AdminRentHistory);
+          this.showAlert();
           console.log(data);
         }
       );
+  }
+
+  showAlert() {
+
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: 'Rent details is completed.. ',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

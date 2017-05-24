@@ -32,10 +32,15 @@
         <ion-label floating color="appbase">Year</ion-label>
           <ion-input
             name="year"
+            #year="ngModel"
             type="text"
             [(ngModel)]= "vehicle.year"
-            required>
+            required
+            [class.invalid]="year.errors && year.dirty">
           </ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="year.errors?.required && year.dirty">
+        Year is required
       </ion-item>
 
       <ion-item>

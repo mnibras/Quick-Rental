@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
 import {Hire} from "../../app/model/hire";
 import {AdminCarService} from "../../providers/admin-car-service";
 import {Vehicle} from "../../app/model/vehicle";
@@ -38,6 +38,8 @@ export class AdminHireInfo {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public adminCarService:AdminCarService,
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
               public adminDriverService:AdminDriverService,
               public adminHireService:AdminHireService) {
 
@@ -82,6 +84,10 @@ export class AdminHireInfo {
   }
 
   acceptHire(hire:Hire){
+    let loading = this.loadingCtrl.create({
+      content: 'You have accepted the details...'
+    });
+    loading.present();
     hire.status = 2;
     hire.driver = this.selectedDriver;
     hire.vehicle = this.selectedVehicle;
@@ -89,6 +95,7 @@ export class AdminHireInfo {
     this.adminHireService.acceptHireDetails(hire)
       .subscribe(
         (data:any) => {
+          loading.dismiss();
           this.navCtrl.popTo(AdminHireHistory);
           console.log(data);
         }
@@ -96,10 +103,15 @@ export class AdminHireInfo {
   }
 
   rejectHire(hire:Hire){
+    let loading = this.loadingCtrl.create({
+      content: 'You have rejected the details...'
+    });
+    loading.present();
     hire.status = 3;
     this.adminHireService.rejectHireDetails(hire)
       .subscribe(
         (data:any) => {
+          loading.dismiss();
           this.navCtrl.popTo(AdminHireHistory);
           console.log(data);
         }
@@ -119,16 +131,33 @@ export class AdminHireInfo {
   }
 
   completeHire(form:NgForm){
+    let loading = this.loadingCtrl.create({
+      content: 'Complete Hire details...'
+    });
+    loading.present();
+
     this.hire.finished = true;
     this.hire.vehicle.currentMillage = this.hire.endMilage;
     this.hire.amount = this.hire.vehicle.hirePerMilage * (this.hire.endMilage - this.hire.startMilage);
     this.adminHireService.completeHireDetails(this.hire)
       .subscribe(
         (data:any) => {
+          loading.dismiss();
           this.navCtrl.popTo(AdminHireHistory);
+          this.showAlert();
           console.log(data);
         }
       );
+  }
+
+  showAlert() {
+
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: 'Hire details is completed.. ',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }
